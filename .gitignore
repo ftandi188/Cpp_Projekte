@@ -1,0 +1,14 @@
+bin/
+obj/
+build/
+.cache/
+.gdb_history
+*.depend
+*.layout
+*.exe
+*.bak
+*.sik
+*.o
+.vs/
+x64/
+
