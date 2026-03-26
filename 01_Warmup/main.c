@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2025 by Michael Farmbauer
+ * Copyright (C) 2025 by Michael Farmbaue
  *
  */
 #define _POSIX_C_SOURCE 200809L
