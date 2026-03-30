@@ -52,10 +52,31 @@ void listPrint(struct list * l)
 
 /*
  * -- %< --------- Place your solution here --------------------
+*/
 
+struct list* ZahlenVereinzeln(value_t Zahl){
+    int Laenge;
+    if(Zahl < 100){
+        Laenge = 2;
+    }
+    else{
+        Laenge = 3;
+    }
 
+    struct list* VereinzelteZahlen = listAllocate(Laenge);
 
- */
+    if(Zahl < 100){
+        VereinzelteZahlen->values[0] = Zahl/10;
+        VereinzelteZahlen->values[1] = Zahl - (VereinzelteZahlen->values[0])*10;
+    }
+    else{
+        VereinzelteZahlen->values[0] = Zahl/100;
+        Zahl = Zahl - (VereinzelteZahlen->values[0])*100;   //Restzahl ist nur noch zweistellig
+        VereinzelteZahlen->values[1] = Zahl/10;
+        VereinzelteZahlen->values[2] = Zahl - (VereinzelteZahlen->values[1])*10;
+    }
+    return VereinzelteZahlen;
+};
 
 /*
  * global data
@@ -83,9 +104,9 @@ void setup()
 
 struct list * getUniqPermutations(struct list *numbers)
 {
-
     // add your code here
-
+    struct list* VereinzelteZahlen = ZahlenVereinzeln(268);
+    listPrint(VereinzelteZahlen);
 
     // FIXME return your solution
     //
