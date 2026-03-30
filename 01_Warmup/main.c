@@ -78,6 +78,31 @@ struct list* ZahlenVereinzeln(value_t Zahl){
     return VereinzelteZahlen;
 };
 
+
+struct list* ZahlenZusammensetzen(struct list* VereinzelteZahlen){
+    int Laenge;
+    if(VereinzelteZahlen->len == 2){     //2 Einzelziffern
+        Laenge = 1;                     //Es gibt eine andere Möglichkeit
+    }
+    else{   //3 Einzelziffern
+        Laenge = 5;     //Es gibt 5 andere Möglichkeiten
+    }
+
+    struct list* ZusammengesetzteZ = listAllocate(Laenge);
+
+    if(Laenge == 1){
+        ZusammengesetzteZ->values[0] = (VereinzelteZahlen->values[1])*10 + VereinzelteZahlen->values[0];
+    }
+    else{
+        ZusammengesetzteZ->values[0] = (VereinzelteZahlen->values[2])*100 + (VereinzelteZahlen->values[1])*10 + VereinzelteZahlen->values[0];
+        ZusammengesetzteZ->values[1] = (VereinzelteZahlen->values[2])*100 + (VereinzelteZahlen->values[0])*10 + VereinzelteZahlen->values[1];
+        ZusammengesetzteZ->values[2] = (VereinzelteZahlen->values[1])*100 + (VereinzelteZahlen->values[2])*10 + VereinzelteZahlen->values[0];
+        ZusammengesetzteZ->values[3] = (VereinzelteZahlen->values[1])*100 + (VereinzelteZahlen->values[0])*10 + VereinzelteZahlen->values[2];
+        ZusammengesetzteZ->values[4] = (VereinzelteZahlen->values[0])*100 + (VereinzelteZahlen->values[2])*10 + VereinzelteZahlen->values[1];
+    }
+    return ZusammengesetzteZ;
+};
+
 /*
  * global data
 
@@ -104,19 +129,53 @@ void setup()
 
 struct list * getUniqPermutations(struct list *numbers)
 {
-    // add your code here
-    struct list* VereinzelteZahlen = ZahlenVereinzeln(268);
-    listPrint(VereinzelteZahlen);
+    //listPrint(numbers);
+    struct list* result = listAllocate(numbers->len);
+    int i;
+    int b = 0;
+    int Flag = 0;
 
-    // FIXME return your solution
-    //
-    // This returns the solution for first example
+    for(i=0; i<(numbers->len); i++){
+        Flag = 0;
+        struct list* VereinzelteZahlen = ZahlenVereinzeln(numbers->values[i]);
+        //listPrint(VereinzelteZahlen);
+        struct list* MoeglicheZahlen = ZahlenZusammensetzen(VereinzelteZahlen);
+        //listPrint(MoeglicheZahlen);
+
+        for(int a=0; a<(numbers->len); a++){
+            if(MoeglicheZahlen->values[0] == numbers->values[a]){
+                    Flag = 1;
+                }
+            if(MoeglicheZahlen->len == 5){
+                if(MoeglicheZahlen->values[1] == numbers->values[a]){
+                    Flag = 1;
+                }
+                if(MoeglicheZahlen->values[2] == numbers->values[a]){
+                    Flag = 1;
+                }
+                if(MoeglicheZahlen->values[3] == numbers->values[a]){
+                    Flag = 1;
+                }
+                if(MoeglicheZahlen->values[4] == numbers->values[a]){
+                    Flag = 1;
+                }
+            }
+            if(Flag == 0){
+                result->values[b] = numbers->values[i];
+                b++;
+            }
+        }
+        listPrint(result);
+        return result;
+    /*
+    This returns the solution for first example
     struct list * result = listAllocate(numbers->len);
     result->len = 1; // overwrite len with the number of values in your result
     result->values[0] = 456;
     return result;
+    */
+    }
 }
-
 //-- %< -------------------------------------------------------
 
 
@@ -221,21 +280,23 @@ int main()
 	    qsort(result->values, result->len, sizeof(result->values[0]), comp);
 	    qsort(test->result->values, test->result->len, sizeof(test->result->values[0]), comp);
 
+
 	    if (!listEqual(test->result, result)) {
 		printf("FAILED expected result:\n");
 		listPrint(test->result);
 		printf("your result:\n");
 		listPrint(result);
 
-		abort(); // stop execution. Remove this line to keep going
+		//abort(); // stop execution. Remove this line to keep going
 	    } else {
 		printf("PASSED with result:\n");
 		listPrint(result);
 	    }
 	    deleteTest(test);
 	    testnr++;
-	}
-    }
 
+
+    }
+    }
     return 0;
 }
