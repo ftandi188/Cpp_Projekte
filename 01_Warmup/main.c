@@ -142,7 +142,10 @@ struct list * getUniqPermutations(struct list *numbers)
         struct list* MoeglicheZahlen = ZahlenZusammensetzen(VereinzelteZahlen);
         //listPrint(MoeglicheZahlen);
 
-        for(int a=0; a<(numbers->len); a++){
+        for(int a=0; a<(numbers->len); a++){        //Innere for-Schleife vergleicht alle möglichen anderen Zahlen
+                                                    //(aus der Funktion ZahlenZusammensetzen) mit allen anderen
+                                                    //Zahlen im Array, bei einer gefundenen Übereinstimmung wird Flag
+                                                    //auf 1 gesetzt und sie kommt somit nicht ins Resultarray
             if(MoeglicheZahlen->values[0] == numbers->values[a]){
                     Flag = 1;
                 }
@@ -160,13 +163,16 @@ struct list * getUniqPermutations(struct list *numbers)
                     Flag = 1;
                 }
             }
-            if(Flag == 0){
+        }
+            if(Flag == 0){      //Wenn angeschaute Zahl mit keiner anderen möglichen Zahl übereinstimmt, wird sie gespeichert
                 result->values[b] = numbers->values[i];
                 b++;
             }
-        }
-        listPrint(result);
-        return result;
+    }
+    result->len = b;
+
+    listPrint(result);
+    return result;
     /*
     This returns the solution for first example
     struct list * result = listAllocate(numbers->len);
@@ -174,7 +180,7 @@ struct list * getUniqPermutations(struct list *numbers)
     result->values[0] = 456;
     return result;
     */
-    }
+
 }
 //-- %< -------------------------------------------------------
 
