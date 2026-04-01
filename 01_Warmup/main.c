@@ -56,7 +56,10 @@ void listPrint(struct list * l)
 
 struct list* ZahlenVereinzeln(value_t Zahl){
     int Laenge;
-    if(Zahl < 100){
+    if(Zahl < 10){
+        Laenge = 1;
+    }
+    if((Zahl < 100)&&(Zahl > 9)){
         Laenge = 2;
     }
     else{
@@ -65,7 +68,7 @@ struct list* ZahlenVereinzeln(value_t Zahl){
 
     struct list* VereinzelteZahlen = listAllocate(Laenge);
 
-    if(Zahl < 100){
+    if((Zahl < 100)&&(Zahl > 9)){
         VereinzelteZahlen->values[0] = Zahl/10;
         VereinzelteZahlen->values[1] = Zahl - (VereinzelteZahlen->values[0])*10;
     }
@@ -82,7 +85,7 @@ struct list* ZahlenVereinzeln(value_t Zahl){
 struct list* ZahlenZusammensetzen(struct list* VereinzelteZahlen){
     int Laenge;
     if(VereinzelteZahlen->len == 2){     //2 Einzelziffern
-        Laenge = 1;                     //Es gibt eine andere Möglichkeit
+        Laenge = 2;                     //Es gibt eine andere Möglichkeit
     }
     else{   //3 Einzelziffern
         Laenge = 6;     //Es gibt 5 andere Möglichkeiten
@@ -90,8 +93,9 @@ struct list* ZahlenZusammensetzen(struct list* VereinzelteZahlen){
 
     struct list* ZusammengesetzteZ = listAllocate(Laenge);
 
-    if(Laenge == 1){
+    if(Laenge == 2){
         ZusammengesetzteZ->values[0] = (VereinzelteZahlen->values[1])*10 + VereinzelteZahlen->values[0];
+        ZusammengesetzteZ->values[1] = (VereinzelteZahlen->values[0])*10 + VereinzelteZahlen->values[1];
     }
     else{
         ZusammengesetzteZ->values[0] = (VereinzelteZahlen->values[2])*100 + (VereinzelteZahlen->values[1])*10 + VereinzelteZahlen->values[0];
@@ -139,10 +143,14 @@ struct list * getUniqPermutations(struct list *numbers)
 
     for(i=0; i<(numbers->len); i++){
         Flag = 0;
+
+
         struct list* VereinzelteZahlen = ZahlenVereinzeln(numbers->values[i]);
         //listPrint(VereinzelteZahlen);
         struct list* MoeglicheZahlen = ZahlenZusammensetzen(VereinzelteZahlen);
         //listPrint(MoeglicheZahlen);
+
+
 
         for(int a=0; a<(numbers->len); a++){        //Innere for-Schleife vergleicht alle möglichen anderen Zahlen
                                                     //(aus der Funktion ZahlenZusammensetzen) mit allen anderen
@@ -152,13 +160,15 @@ struct list * getUniqPermutations(struct list *numbers)
                 continue;
             }
 
-            if(MoeglicheZahlen->len == 1){
-                if((MoeglicheZahlen->values[0] == numbers->values[a])&&(MoeglicheZahlen->values[0])<=99){
+
+            if(MoeglicheZahlen->len == 2){
+                if((MoeglicheZahlen->values[0] == numbers->values[a])&&(MoeglicheZahlen->values[0])>9){
                     Flag = 1;
                 }
-                if((MoeglicheZahlen->values[1] == numbers->values[a])&&(MoeglicheZahlen->values[1])<=99){
+                if((MoeglicheZahlen->values[1] == numbers->values[a])&&(MoeglicheZahlen->values[0])>9){
                     Flag = 1;
                 }
+                /*
                 if((MoeglicheZahlen->values[2] == numbers->values[a])&&(MoeglicheZahlen->values[2])<=99){
                     Flag = 1;
                 }
@@ -171,6 +181,7 @@ struct list * getUniqPermutations(struct list *numbers)
                 if((MoeglicheZahlen->values[5] == numbers->values[a])&&(MoeglicheZahlen->values[5])<=99){
                     Flag = 1;
                 }
+                */
                 }
             if(MoeglicheZahlen->len == 6){
                 if((MoeglicheZahlen->values[0] == numbers->values[a])&&(MoeglicheZahlen->values[0])>99){
@@ -193,6 +204,10 @@ struct list * getUniqPermutations(struct list *numbers)
                 }
             }
         }
+
+            if(numbers->values[i] < 10){
+            Flag = 0;
+        }
             if(Flag == 0){      //Wenn angeschaute Zahl mit keiner anderen möglichen Zahl übereinstimmt, wird sie gespeichert
                 result->values[b] = numbers->values[i];
                 b++;
@@ -200,7 +215,7 @@ struct list * getUniqPermutations(struct list *numbers)
     }
     result->len = b;
 
-    listPrint(result);
+    //listPrint(result);
     return result;
     /*
     This returns the solution for first example
