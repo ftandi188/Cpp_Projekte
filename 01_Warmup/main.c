@@ -85,7 +85,7 @@ struct list* ZahlenZusammensetzen(struct list* VereinzelteZahlen){
         Laenge = 1;                     //Es gibt eine andere Möglichkeit
     }
     else{   //3 Einzelziffern
-        Laenge = 5;     //Es gibt 5 andere Möglichkeiten
+        Laenge = 6;     //Es gibt 5 andere Möglichkeiten
     }
 
     struct list* ZusammengesetzteZ = listAllocate(Laenge);
@@ -99,7 +99,9 @@ struct list* ZahlenZusammensetzen(struct list* VereinzelteZahlen){
         ZusammengesetzteZ->values[2] = (VereinzelteZahlen->values[1])*100 + (VereinzelteZahlen->values[2])*10 + VereinzelteZahlen->values[0];
         ZusammengesetzteZ->values[3] = (VereinzelteZahlen->values[1])*100 + (VereinzelteZahlen->values[0])*10 + VereinzelteZahlen->values[2];
         ZusammengesetzteZ->values[4] = (VereinzelteZahlen->values[0])*100 + (VereinzelteZahlen->values[2])*10 + VereinzelteZahlen->values[1];
+        ZusammengesetzteZ->values[5] = (VereinzelteZahlen->values[0])*100 + (VereinzelteZahlen->values[1])*10 + VereinzelteZahlen->values[2];
     }
+    //listPrint(ZusammengesetzteZ);
     return ZusammengesetzteZ;
 };
 
@@ -146,20 +148,47 @@ struct list * getUniqPermutations(struct list *numbers)
                                                     //(aus der Funktion ZahlenZusammensetzen) mit allen anderen
                                                     //Zahlen im Array, bei einer gefundenen Übereinstimmung wird Flag
                                                     //auf 1 gesetzt und sie kommt somit nicht ins Resultarray
-            if(MoeglicheZahlen->values[0] == numbers->values[a]){
+            if(a == i){
+                continue;
+            }
+
+            if(MoeglicheZahlen->len == 1){
+                if((MoeglicheZahlen->values[0] == numbers->values[a])&&(MoeglicheZahlen->values[0])<=99){
                     Flag = 1;
                 }
-            if(MoeglicheZahlen->len == 5){
-                if(MoeglicheZahlen->values[1] == numbers->values[a]){
+                if((MoeglicheZahlen->values[1] == numbers->values[a])&&(MoeglicheZahlen->values[1])<=99){
                     Flag = 1;
                 }
-                if(MoeglicheZahlen->values[2] == numbers->values[a]){
+                if((MoeglicheZahlen->values[2] == numbers->values[a])&&(MoeglicheZahlen->values[2])<=99){
                     Flag = 1;
                 }
-                if(MoeglicheZahlen->values[3] == numbers->values[a]){
+                if((MoeglicheZahlen->values[3] == numbers->values[a])&&(MoeglicheZahlen->values[3])<=99){
                     Flag = 1;
                 }
-                if(MoeglicheZahlen->values[4] == numbers->values[a]){
+                if((MoeglicheZahlen->values[4] == numbers->values[a])&&(MoeglicheZahlen->values[4])<=99){
+                    Flag = 1;
+                }
+                if((MoeglicheZahlen->values[5] == numbers->values[a])&&(MoeglicheZahlen->values[5])<=99){
+                    Flag = 1;
+                }
+                }
+            if(MoeglicheZahlen->len == 6){
+                if((MoeglicheZahlen->values[0] == numbers->values[a])&&(MoeglicheZahlen->values[0])>99){
+                    Flag = 1;
+                }
+                if((MoeglicheZahlen->values[1] == numbers->values[a])&&(MoeglicheZahlen->values[1])>99){
+                    Flag = 1;
+                }
+                if((MoeglicheZahlen->values[2] == numbers->values[a])&&(MoeglicheZahlen->values[2])>99){
+                    Flag = 1;
+                }
+                if((MoeglicheZahlen->values[3] == numbers->values[a])&&(MoeglicheZahlen->values[3])>99){
+                    Flag = 1;
+                }
+                if((MoeglicheZahlen->values[4] == numbers->values[a])&&(MoeglicheZahlen->values[4])>99){
+                    Flag = 1;
+                }
+                if((MoeglicheZahlen->values[5] == numbers->values[a])&&(MoeglicheZahlen->values[5])>99){
                     Flag = 1;
                 }
             }
