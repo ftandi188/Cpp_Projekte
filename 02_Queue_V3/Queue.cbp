@@ -32,6 +32,7 @@
 		</Compiler>
 		<Unit filename="main.cpp" />
 		<Unit filename="queue.h" />
+		<Unit filename="queueelement.cpp" />
 		<Unit filename="queueelement.h" />
 		<Unit filename="testlevel.h" />
 		<Extensions>
