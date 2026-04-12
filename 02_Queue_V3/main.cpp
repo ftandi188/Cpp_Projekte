@@ -40,7 +40,7 @@ int main()
 // Standard tests for QueueElement
 #if test_level >=2
     std::cout << std::endl;
-    TestQueueElem = new QueueElement((char*)"Point 1", 1, 2, 3);
+    TestQueueElem = new QueueElement((char*)"Point 1", 1, 2, 3, nullptr, nullptr);
     TestQueueElem->print();
     std::cout << " Prev: " << TestQueueElem->getPrevious()
               << ", Next: " << TestQueueElem->getNext()
