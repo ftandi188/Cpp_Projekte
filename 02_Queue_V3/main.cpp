@@ -111,7 +111,7 @@ int main()
         std::cout << std::endl << "Pushing element " << i << "..." << std::endl;
         std::stringstream Labeltext;
         Labeltext << "Item Number #" << i;
-        TestQueueElem = new QueueElement(Labeltext.str().c_str(), i*2, i*i, 10000/(i+1));
+        TestQueueElem = new QueueElement(Labeltext.str().c_str(), i*2, i*i, 10000/(i+1), nullptr, nullptr);
         if (!InitialElement)
         {
             InitialElement=TestQueueElem;

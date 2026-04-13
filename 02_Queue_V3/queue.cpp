@@ -63,3 +63,50 @@ while(Laufpointer != nullptr){
     Laufvar++;
 }
 }
+
+
+void Queue::push(QueueElement* NewIt){
+    if(FirstElement == nullptr){        //Sonderfall: Liste bisher leer
+        FirstElement = NewIt;           //First und LastElement sind das eine Objekt
+        LastElement = NewIt;
+
+        NewIt->Previous = nullptr;      //Im Objekt sind Previous- und Nextpointer die Nullpointer,
+        NewIt->Next = nullptr;          //weil es davor und danach nichts gibt
+    }
+    else{                               //Normalfall: Liste hat bereits mindestens 1 Element
+        FirstElement->Previous = NewIt; //bisheriges Firstelement zeigt nun auf seinen neuen Vorgänger
+
+        NewIt->Previous = nullptr;      //Previous vom neuen Element zeigt auf nichts
+        NewIt->Next = FirstElement;     //Next vom neuen Element zeigt auf bisheriges Firstelement (Nun an 2.Stelle)
+
+        FirstElement = NewIt;           //Firstelement in Queue mit neuem Pointer überschreiben
+    }
+}
+
+
+void Queue::pop(){
+    int Flag = 0;
+    QueueElement* Zwischenpointer = nullptr;
+
+    if((FirstElement == LastElement)&&(FirstElement == nullptr)){   //Nichts in der Liste --> Nichts, was man löschen könnte
+        Flag = 1;
+    }
+
+    if((FirstElement == LastElement)&&(FirstElement != nullptr)){   //Genau ein Element in der Liste
+        delete FirstElement;        //Speicher freigeben
+
+        FirstElement = nullptr;
+        LastElement = nullptr;
+
+        Flag = 1;
+    }
+
+    if(Flag == 0){
+        Zwischenpointer = LastElement->Previous;    //Pointer auf vorletztes Element
+        Zwischenpointer->Next = nullptr;            //Neues Ende der Liste markieren
+
+        delete LastElement;     //Speicher freigeben (muss man machen, bevor man den Pointer überschreibt!)
+
+        LastElement = Zwischenpointer;              //Listeneinstieg am Ende richtig setzen
+    }
+}
