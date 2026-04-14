@@ -110,3 +110,24 @@ void Queue::pop(){
         LastElement = Zwischenpointer;              //Listeneinstieg am Ende richtig setzen
     }
 }
+
+
+void Queue::clear(){
+    unsigned Laenge = size();
+
+    for(int i=0; i<Laenge; i++){
+        pop();
+    }
+}
+
+
+Queue::~Queue(){
+    QueueElement* Zwischenspeicher;
+    QueueElement* Laufpointer = FirstElement;
+
+    while(Laufpointer != nullptr){
+        Zwischenspeicher = Laufpointer->Next;
+        delete Laufpointer;
+        Laufpointer = Zwischenspeicher;
+    }
+}
