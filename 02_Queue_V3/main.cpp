@@ -181,7 +181,76 @@ int main()
 #endif
 
 #if test_level >=6
-    // insert tests for insert method here:
+    Queue* Liste = new Queue;          //leere Liste angelegt
+    QueueElement* Elemente[10];
+
+    for (int i=0; i<10; i++){
+        Elemente[i] = new QueueElement();
+    }
+
+    std::cout << "Test a): Einfuegen eines Elements in leere Liste" << std::endl;
+    Liste->insert(Elemente[0], 44);     //ein Element in leere Liste einfügen
+    if((Liste->FirstElement == Elemente[0])&&(Liste->LastElement == Elemente[0])){
+        std::cout << "Listenverwaltung passt" << std::endl;
+    }
+    if((Elemente[0]->Previous == nullptr)&&(Elemente[0]->Next == nullptr)){
+        std::cout << "Pointer auf die Nachbarn stimmen" <<std::endl <<std::endl;
+    }
+
+    std::cout << "Test b): Einfuegen eines Elements am Anfang in Liste mit einem Element" << std::endl;
+    Liste->insert(Elemente[1], 0);      //in Liste ist nun erst Elemente[1], dann Elemente[0]
+    if((Liste->FirstElement == Elemente[1])&&(Liste->LastElement == Elemente[0])){
+        std::cout << "Listenverwaltung passt" << std::endl;
+    }
+    if((Elemente[1]->Previous == nullptr)&&(Elemente[1]->Next == Elemente[0])){
+        if((Elemente[0]->Previous == Elemente[1])&&(Elemente[0]->Next == nullptr)){
+            std::cout << "Pointer auf die Nachbarn stimmen" <<std::endl <<std::endl;
+        }
+    }
+
+    std::cout << "Test c): Einfuegen eines Elements am Ende in Liste mit einem Element" << std::endl;
+    Liste->pop();       //Nun nur noch Elemente[1] in der Liste
+    Liste->insert(Elemente[2], 1);      //in Liste ist nun erst Elemente[1], dann Elemente[2]
+    if((Liste->FirstElement == Elemente[1])&&(Liste->LastElement == Elemente[2])){
+        std::cout << "Listenverwaltung passt" << std::endl;
+    }
+    if((Elemente[1]->Previous == nullptr)&&(Elemente[1]->Next == Elemente[2])){
+        if((Elemente[2]->Previous == Elemente[1])&&(Elemente[2]->Next == nullptr)){
+            std::cout << "Pointer auf die Nachbarn stimmen" <<std::endl <<std::endl;
+        }
+    }
+
+    Liste->clear();     //Liste zunächst geleert
+    for (int i=6; i>=3; i--){
+        Liste->push(Elemente[i]);   //Liste befüllen mit 4 Elementen (Elemente[3] bis Elemente[6])
+    }
+    std::cout << "Test d): Einfuegen eines Elements am Anfang in Liste mit vielen Elementen" << std::endl;
+    Liste->insert(Elemente[7], 0);      //Abfolge 7,3,4,5,6
+    if((Liste->FirstElement == Elemente[7])&&(Liste->LastElement == Elemente[6])){
+        std::cout << "Listenverwaltung passt" << std::endl;
+    }
+    if((Elemente[7]->Previous == nullptr)&&(Elemente[7]->Next == Elemente[3])){
+        if((Elemente[3]->Previous == Elemente[7])&&(Elemente[3]->Next == Elemente[4])){
+            std::cout << "Pointer auf die Nachbarn stimmen" <<std::endl <<std::endl;
+        }
+    }
+
+    std::cout << "Test e): Einfuegen eines Elements am Ende in Liste mit vielen Elementen" << std::endl;
+    Liste->insert(Elemente[8], 23981);      //Abfolge 7,3,4,5,6,8
+    if((Liste->FirstElement == Elemente[7])&&(Liste->LastElement == Elemente[8])){
+        std::cout << "Listenverwaltung passt" << std::endl;
+    }
+    if((Elemente[8]->Previous == Elemente[6])&&(Elemente[8]->Next == nullptr)){
+        std::cout << "Pointer auf die Nachbarn stimmen" <<std::endl <<std::endl;
+    }
+
+    std::cout << "Test f): Einfuegen eines Elements irgendwo in die Mitte" << std::endl;
+    Liste->insert(Elemente[9], 4);      //Abfolge 7,3,4,5,9,6,8
+    if((Elemente[9]->Previous == Elemente[5])&&(Elemente[9]->Next == Elemente[6])){
+        if((Elemente[6]->Previous == Elemente[9])&&(Elemente[5]->Next == Elemente[9])){
+            std::cout << "Pointer auf die Nachbarn stimmen" <<std::endl <<std::endl;
+        }
+    }
 
     std::cout << std::endl;
     std::cout << std::endl << "Test level 6 completed!"

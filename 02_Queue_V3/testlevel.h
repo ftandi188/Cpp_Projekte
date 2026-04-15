@@ -4,5 +4,5 @@
 
 #undef test_level
 
-#define test_level 5
+#define test_level 6
 

@@ -131,3 +131,49 @@ Queue::~Queue(){
         Laufpointer = Zwischenspeicher;
     }
 }
+
+
+
+void Queue::insert(QueueElement* NewIt, unsigned Index){
+
+    unsigned Laenge = size();
+    int Flag = 0;
+
+    if ((Index == 0)||(Laenge == 0)){       //Push aufrufen, fertig
+        push(NewIt);
+        Flag = 1;
+    }
+
+    if ((Index >= Laenge)&&(Flag == 0)){    //An Listenende einhängen
+        NewIt->Next = nullptr;
+        NewIt->Previous = LastElement;
+
+        LastElement->Next = NewIt;
+        LastElement = NewIt;
+        Flag = 1;
+    }
+    //mit diesen beiden Bedingungen sind folgende Fälle abgedeckt:
+    //Man hängt am Anfang ein, man hängt am Schluss ein, Liste ist zunächst leer
+    //-->somit auch alle Szenarien, die bei leerer Liste oder genau einem Element eintreten können
+
+    if(Flag == 0){
+        QueueElement* Laufpointer = FirstElement;
+        QueueElement* Vorpointer;
+        QueueElement* Nachpointer;
+
+        for(int i=0; i<Index-2; i++){
+            Laufpointer = Laufpointer->Next;
+        }
+        Vorpointer = Laufpointer->Next;         //Pointer des Vorgängerelements
+
+        Nachpointer = Vorpointer->Next;         //Pointer des Nachfolgerelements
+
+
+        Vorpointer->Next = NewIt;               //Anpassen der jeweiligen Pointer
+        Nachpointer->Previous = NewIt;          //der beiden Nachbarn
+
+        NewIt->Previous = Vorpointer;           //Anpassen der beiden Pointer von NewIt,
+        NewIt->Next = Nachpointer;              //die auf die Nachbarn zeigen
+    }
+    Flag = 0;
+}
