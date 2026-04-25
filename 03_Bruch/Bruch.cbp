@@ -21,6 +21,8 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="bruch.cpp" />
+		<Unit filename="bruch.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="testlevel.h" />
 		<Extensions>
