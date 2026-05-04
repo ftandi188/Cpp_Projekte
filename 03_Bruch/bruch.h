@@ -11,14 +11,16 @@ public:
     Bruch(int z = 0, int n = 1);
     //Falls man beim Erstellen eines Objekts keinen oder nur einen Parameter
     //angibt, werden für die unbekannten Größen die Default-Werte genutzt
-    void print(std::ostream& os);       //Parameter ist Referenz auf den Stream, mit dem die Ausgabe erfolgt
-    void print(std::ostream& os, int Precision);
+    void print(std::ostream& os) const;       //Parameter ist Referenz auf den Stream, mit dem die Ausgabe erfolgt
+    void print(std::ostream& os, int Precision) const;
 
     int getZaehler();
     int getNenner();
     double getValue();
 
 };
+
+std::ostream& operator<<(std::ostream& os, const Bruch& b);
 
 
 #endif // BRUCH_H_INCLUDED

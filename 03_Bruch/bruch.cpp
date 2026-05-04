@@ -5,11 +5,11 @@ Bruch::Bruch(int z, int n)
     {}
 
 
-void Bruch::print(std::ostream& os){
+void Bruch::print(std::ostream& os) const{
     os << "(" << Zaehler << "/" << Nenner << ")";
 }
 
-void Bruch::print(std::ostream& os, int Precision){
+void Bruch::print(std::ostream& os, int Precision) const{
 int Zaehlerh = Zaehler;
 
 int Stelle = Zaehlerh/Nenner;
@@ -22,10 +22,15 @@ for (int i=0; i<Precision; i++){
     Rest = Zaehlerh%Nenner;
     Zaehlerh = 10*Rest;
     Stelle = Zaehlerh/Nenner;
-    Zaehler = Zaehlerh - (Stelle*Nenner);
+    Zaehlerh = Zaehlerh - (Stelle*Nenner);
 
     os << Stelle;
 }
+}
+
+std::ostream& operator<<(std::ostream& os, const Bruch& b){
+    b.print(os);
+    return os;
 }
 
 
