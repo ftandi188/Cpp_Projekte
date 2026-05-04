@@ -7,6 +7,6 @@
 
 #undef test_level
 
-#define test_level 3
+#define test_level 4
 
 #endif // TESTLEVEL_H

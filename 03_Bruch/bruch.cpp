@@ -33,6 +33,20 @@ std::ostream& operator<<(std::ostream& os, const Bruch& b){
     return os;
 }
 
+Bruch Bruch::operator-() const{
+    Bruch NegBruch(*this);
+    NegBruch.Zaehler = - NegBruch.Zaehler;
+    return NegBruch;
+}
+
+Bruch Bruch::operator~() const{
+    Bruch Kehrbruch(*this);
+    int Zwischenspeicher = Zaehler;
+    Kehrbruch.Zaehler = Kehrbruch.Nenner;
+    Kehrbruch.Nenner = Zwischenspeicher;
+    return Kehrbruch;
+}
+
 
 int Bruch::getZaehler(){
     return Zaehler;

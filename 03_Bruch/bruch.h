@@ -14,6 +14,9 @@ public:
     void print(std::ostream& os) const;       //Parameter ist Referenz auf den Stream, mit dem die Ausgabe erfolgt
     void print(std::ostream& os, int Precision) const;
 
+    Bruch operator-() const;
+    Bruch operator~() const;
+
     int getZaehler();
     int getNenner();
     double getValue();
