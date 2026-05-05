@@ -94,6 +94,43 @@ Bruch Bruch::operator++(int){       //Postinkrement
     return Backup;
 }
 
+void Bruch::normalize(){
+int Rest = 1;
+int Teiler = 1;
+int Zahlgr = 0;
+int Zahlkl = 0;
+
+if(Nenner > Zaehler){
+    Zahlgr = Nenner;
+    Zahlkl = Zaehler;
+}
+else if(Nenner < Zaehler){
+    Zahlgr = Zaehler;
+    Zahlkl = Nenner;
+}
+else{           //Falls Nenner und Zähler gleich groß sind
+    Nenner = 1;
+    Zaehler = 1;
+    return;
+}
+
+
+while(Rest != 0){
+    Rest = Zahlgr%Zahlkl;
+    if(Rest == 0){
+        break;
+    }
+    Teiler = Rest;
+    Zahlgr = Zahlkl;
+    Zahlkl = Rest;
+}       //Im letzten Durchlauf steht in Zahlgr die interessierende Zahl
+        //(Zahlkl wird auf 0 gesetzt)
+
+    Zaehler /= Teiler;
+    Nenner /= Teiler;
+}
+
+
 int Bruch::getZaehler() const{
     return Zaehler;
 }

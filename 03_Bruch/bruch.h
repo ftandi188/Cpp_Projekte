@@ -20,8 +20,10 @@ public:
     Bruch operator*(int rhs) const;
     Bruch& operator*=(const Bruch& rhs);
 
-    Bruch& operator++();
-    Bruch operator++(int);
+    Bruch& operator++();       //Präinkrement
+    Bruch operator++(int);     //Postinkrement
+
+    void normalize();
 
     bool operator==(Bruch rhs) const;
 
