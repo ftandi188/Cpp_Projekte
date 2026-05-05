@@ -70,10 +70,17 @@ Bruch operator* (int lhs, const Bruch& rhs){       //Multiplizieren Bruch und in
 }
 
 
-Bruch& Bruch::operator*=(const Bruch& rhs){
+Bruch& Bruch::operator*=(const Bruch& rhs){         //Implementierung *= Operator
     Zaehler *= rhs.getZaehler();
     Nenner *= rhs.getNenner();
     return *this;
+}
+
+bool Bruch::operator==(Bruch rhs) const{
+    if(Zaehler*rhs.Nenner == Nenner*rhs.Zaehler){
+        return true;
+    }
+    return false;
 }
 
 
