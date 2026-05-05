@@ -54,7 +54,7 @@ Bruch Bruch::operator*(const Bruch& rhs) const{    //Multiplizieren von 2 Brüche
     return Produkt;
 }
 
-Bruch Bruch::operator*(int& rhs) const{        //Multiplizieren Bruch und int, int steht rechts
+Bruch Bruch::operator*(int rhs) const{        //Multiplizieren Bruch und int, int steht rechts
     Bruch Produkt(*this);
     Produkt.Zaehler *= rhs;
     return Produkt;
@@ -67,6 +67,13 @@ Bruch operator* (int lhs, const Bruch& rhs){       //Multiplizieren Bruch und in
 
     Bruch Produkt(z,n);
     return Produkt;
+}
+
+
+Bruch& Bruch::operator*=(const Bruch& rhs){
+    Zaehler *= rhs.getZaehler();
+    Nenner *= rhs.getNenner();
+    return *this;
 }
 
 

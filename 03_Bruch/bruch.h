@@ -17,7 +17,8 @@ public:
     Bruch operator-() const;
     Bruch operator~() const;
     Bruch operator*(const Bruch& rhs) const;
-    Bruch operator*(int& rhs) const;
+    Bruch operator*(int rhs) const;
+    Bruch& operator*=(const Bruch& rhs);
 
     int getZaehler() const;
     int getNenner() const;
