@@ -47,12 +47,34 @@ Bruch Bruch::operator~() const{
     return Kehrbruch;
 }
 
+Bruch Bruch::operator*(const Bruch& rhs) const{    //Multiplizieren von 2 Brüchen
+    Bruch Produkt(*this);
+    (Produkt.Zaehler) *= (rhs.Zaehler);
+    (Produkt.Nenner) *= (rhs.Nenner);
+    return Produkt;
+}
 
-int Bruch::getZaehler(){
+Bruch Bruch::operator*(int& rhs) const{        //Multiplizieren Bruch und int, int steht rechts
+    Bruch Produkt(*this);
+    Produkt.Zaehler *= rhs;
+    return Produkt;
+}
+
+Bruch operator* (int lhs, const Bruch& rhs){       //Multiplizieren Bruch und int, int steht links
+    int z = rhs.getZaehler();
+    int n = rhs.getNenner();
+    z *= lhs;
+
+    Bruch Produkt(z,n);
+    return Produkt;
+}
+
+
+int Bruch::getZaehler() const{
     return Zaehler;
 }
 
-int Bruch::getNenner(){
+int Bruch::getNenner() const{
     return Nenner;
 }
 

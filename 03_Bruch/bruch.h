@@ -16,14 +16,17 @@ public:
 
     Bruch operator-() const;
     Bruch operator~() const;
+    Bruch operator*(const Bruch& rhs) const;
+    Bruch operator*(int& rhs) const;
 
-    int getZaehler();
-    int getNenner();
+    int getZaehler() const;
+    int getNenner() const;
     double getValue();
 
 };
 
 std::ostream& operator<<(std::ostream& os, const Bruch& b);
 
+Bruch operator* (int lhs, const Bruch& rhs);
 
 #endif // BRUCH_H_INCLUDED
