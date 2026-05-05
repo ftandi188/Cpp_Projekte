@@ -20,6 +20,9 @@ public:
     Bruch operator*(int rhs) const;
     Bruch& operator*=(const Bruch& rhs);
 
+    Bruch& operator++();
+    Bruch operator++(int);
+
     bool operator==(Bruch rhs) const;
 
     int getZaehler() const;

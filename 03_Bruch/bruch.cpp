@@ -76,13 +76,23 @@ Bruch& Bruch::operator*=(const Bruch& rhs){         //Implementierung *= Operato
     return *this;
 }
 
-bool Bruch::operator==(Bruch rhs) const{
+bool Bruch::operator==(Bruch rhs) const{            //Brüche auf Gleichheit prüfen
     if(Zaehler*rhs.Nenner == Nenner*rhs.Zaehler){
         return true;
     }
     return false;
 }
 
+Bruch& Bruch::operator++(){         //Präinkrement
+    Zaehler += Nenner;
+    return *this;
+}
+
+Bruch Bruch::operator++(int){       //Postinkrement
+    Bruch Backup(*this);
+    Zaehler += Nenner;
+    return Backup;
+}
 
 int Bruch::getZaehler() const{
     return Zaehler;
