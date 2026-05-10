@@ -106,10 +106,13 @@ void VtlKeyHit(int key)
 // ADD your "BASIC KEY OPERATIONS" here, see manual
 // important: ensure *not* to modify the value of "key"
 
+    if((key > 48)&&(key < 58)){         //Prüfe, ob Zahl zwischen 1 und 9
+        AmountRequested = (key - 48)*10;
+    }
 
-
-
-
+    if((key > 64)&&(key < 91)){         //Prüfe, ob Großbuchstabe
+        TemperatureRequested = (key - 64)*5;
+    }
 
 
 
