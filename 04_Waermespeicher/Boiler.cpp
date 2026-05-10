@@ -21,3 +21,10 @@ Boiler::~Boiler(){
 
 }
 
+void Boiler::addContent(double MediaTemperature, double MediaAmount){
+    ContentTemperature =
+    (ContentTemperature*ContainedVolume + MediaTemperature*MediaAmount)/(ContainedVolume + MediaAmount);
+
+    ContainedVolume += MediaAmount;
+}
+
