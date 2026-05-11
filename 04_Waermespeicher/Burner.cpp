@@ -29,8 +29,8 @@ void Burner::show(){
     Text(ActualPosition.X + 10, ActualPosition.Y + 10, Name.c_str());
 
     stringstream Textbuffer;
-    Textbuffer << "C    " << ConsumedFuel;
-    Text(ActualPosition.X + 10, ActualPosition.Y + ActualDimension.Y -10, Textbuffer.str().c_str());
+    Textbuffer << "C:    " << ConsumedFuel;
+    Text(ActualPosition.X + 10, ActualPosition.Y + ActualDimension.Y -25, Textbuffer.str().c_str());
 }
 
 void Burner::updateCoordinates(){
@@ -55,7 +55,7 @@ void Burner::updateCoordinates(){
         if(ActualDimension.Y < 60){
             ActualDimension.Y = 60;
         }
-
+                                        //Berechnungen: siehe Aufzeichnungen
         if(ActualPosition.X < 0){
             ActualPosition.X = (MyBoiler->Position).X + ((MyBoiler->Dimension).X - ActualDimension.X)/2;
         }

@@ -40,9 +40,9 @@ void Boiler::show(){
 
     stringstream Textbuffer;
 
-    Textbuffer << "T    " << ContentTemperature;
-    Text(Position.X + 10, Position.Y + Dimension.Y -30, Textbuffer.str().c_str());
+    Textbuffer << "T:    " << ContentTemperature;
+    Text(Position.X + 10, Position.Y + Dimension.Y -40, Textbuffer.str().c_str());
     Textbuffer.str("");
-    Textbuffer << "V    " << ContainedVolume;
-    Text(Position.X + 10, Position.Y + Dimension.Y -10, Textbuffer.str().c_str());
+    Textbuffer << "V:    " << ContainedVolume;
+    Text(Position.X + 10, Position.Y + Dimension.Y -25, Textbuffer.str().c_str());
 }

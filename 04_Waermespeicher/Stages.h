@@ -11,6 +11,6 @@
 
 // Configuration: Change as advised by manual
 #define ERROR_HANDLING 0
-#define STAGE DEFINE_FRAME
+#define STAGE CREATE_COMPONENTS
 
 #endif
