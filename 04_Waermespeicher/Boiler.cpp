@@ -28,3 +28,21 @@ void Boiler::addContent(double MediaTemperature, double MediaAmount){
     ContainedVolume += MediaAmount;
 }
 
+
+void Boiler::addHeat(double HeatAmount){
+    ContentTemperature += HeatAmount/(ContainedVolume*4.17);
+}
+
+
+void Boiler::show(){
+    Rect(Position.X, Position.Y, Position.X + Dimension.X, Position.Y + Dimension.Y);
+    Text(Position.X + 10, Position.Y + 10, Name.c_str());
+
+    stringstream Textbuffer;
+
+    Textbuffer << "T    " << ContentTemperature;
+    Text(Position.X + 10, Position.Y + Dimension.Y -30, Textbuffer.str().c_str());
+    Textbuffer.str("");
+    Textbuffer << "V    " << ContainedVolume;
+    Text(Position.X + 10, Position.Y + Dimension.Y -10, Textbuffer.str().c_str());
+}
