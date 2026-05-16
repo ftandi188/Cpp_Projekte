@@ -64,3 +64,16 @@ void Burner::updateCoordinates(){
         }
     }
 }
+
+
+bool Burner::contains(const Point& Pos){
+
+    if((Pos.X >= ActualPosition.X)&&(Pos.X <= (ActualPosition.X + ActualDimension.X))){
+        if((Pos.Y >= ActualPosition.Y)&&(Pos.Y <= (ActualPosition.Y + ActualDimension.Y))){
+            return true;
+        }
+    }
+
+    return false;
+}
+
