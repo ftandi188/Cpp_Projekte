@@ -8,10 +8,19 @@
 using std::stringstream;
 
 
+Boiler::Boiler()
+                :ContentTemperature(20), ContainedVolume(100),
+                Position(50,50), Dimension(50,50), Name("Hans"),
+                BBurner(new Burner(this, "Erwin"))
+                    //Objekt vom Typ Burner wird erzeugt, damit der Pointer vom Objekt
+                    //vom Typ Boiler, das gerade generiert wird, auf dieses zeigen kann
+                {}
+
+
 Boiler::Boiler(const std::string& uName, Point uPosition, Point uDimension,
                double uContainedVolume, double uContentTemperature)
                :ContentTemperature(uContentTemperature), ContainedVolume(uContainedVolume),
-                Position(uPosition), Dimension(uDimension), Name(uName)
+                Position(uPosition), Dimension(uDimension), Name(uName), BBurner(new Burner(this, "Erwin"))
                 {}
                     //ein string kann auch über die Initialisierungsliste zugewiesen werden
                     //(im Gegensatz zu einem char-Array)

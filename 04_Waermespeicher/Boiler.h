@@ -15,6 +15,7 @@ class Boiler
                Point Dimension=Point(130 ,100),     //Default-Parameter dürfen in der cpp
                double ContainedVolume = 0.0,        //kein zweites mal auftauchen!
                double ContentTemperature = 0.0
+
               );
         ~Boiler();
 
@@ -33,6 +34,7 @@ class Boiler
     protected:
 
     private:
+        Burner* BBurner;
 };
 
 
