@@ -27,7 +27,7 @@ Boiler::Boiler(const std::string& uName, Point uPosition, Point uDimension,
 
 
 Boiler::~Boiler(){
-
+    delete this->BBurner;
 }
 
 void Boiler::addContent(double MediaTemperature, double MediaAmount){
