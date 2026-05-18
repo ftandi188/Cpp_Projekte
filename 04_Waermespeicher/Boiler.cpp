@@ -36,6 +36,21 @@ Boiler::~Boiler(){
     delete this->BBurner;
 }
 
+
+Boiler& Boiler::operator=(const Boiler& rhs){
+    ContentTemperature = rhs.ContentTemperature;
+    ContainedVolume = rhs.ContainedVolume;
+    Position = rhs.Position;
+    Dimension = rhs.Dimension;
+    Name = rhs.Name;
+
+    delete BBurner;     //bisherigen Burner vom Objekt, das hier überschrieben wird, freigeben
+    BBurner = new Burner(this, rhs.BBurner->Name);  //Deep copy
+
+    return *this;
+}
+
+
 void Boiler::addContent(double MediaTemperature, double MediaAmount){
     ContentTemperature =
     (ContentTemperature*ContainedVolume + MediaTemperature*MediaAmount)/(ContainedVolume + MediaAmount);

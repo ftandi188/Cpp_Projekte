@@ -20,6 +20,8 @@ class Boiler
 
         ~Boiler();
 
+        Boiler& operator=(const Boiler& rhs);
+
         void addContent(double MediaTemperature, double MediaAmount);
         void addHeat(double HeatAmount);
         void extractMedium(double AmountRequested,
