@@ -25,6 +25,12 @@ Boiler::Boiler(const std::string& uName, Point uPosition, Point uDimension,
                     //ein string kann auch über die Initialisierungsliste zugewiesen werden
                     //(im Gegensatz zu einem char-Array)
 
+Boiler::Boiler(const Boiler& Quelle)
+               :ContentTemperature(Quelle.ContentTemperature), ContainedVolume(Quelle.ContainedVolume),
+                Position(Quelle.Position), Dimension(Quelle.Dimension), Name(Quelle.Name),
+                BBurner(new Burner(this, Quelle.BBurner->Name))
+                {}
+
 
 Boiler::~Boiler(){
     delete this->BBurner;
