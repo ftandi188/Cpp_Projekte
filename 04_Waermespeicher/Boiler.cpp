@@ -82,6 +82,8 @@ void Boiler::show(){
     Textbuffer.str("");
     Textbuffer << "V:    " << ContainedVolume;
     Text(Position.X + 10, Position.Y + Dimension.Y -25, Textbuffer.str().c_str());
+
+    BBurner->show();
 }
 
 
