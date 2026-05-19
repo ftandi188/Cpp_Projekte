@@ -28,6 +28,7 @@ class Boiler
                            double& AmountDelivered, double& Temperature);
         void show();
         void activateHeating(double Amount);
+        bool contains(const Point& Pos);
 
         double ContentTemperature;
         double ContainedVolume;

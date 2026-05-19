@@ -71,7 +71,6 @@ void Boiler::activateHeating(double Amount){
 }
 
 
-
 void Boiler::show(){
     Rect(Position.X, Position.Y, Position.X + Dimension.X, Position.Y + Dimension.Y);
     Text(Position.X + 10, Position.Y + 10, Name.c_str());
@@ -83,4 +82,17 @@ void Boiler::show(){
     Textbuffer.str("");
     Textbuffer << "V:    " << ContainedVolume;
     Text(Position.X + 10, Position.Y + Dimension.Y -25, Textbuffer.str().c_str());
+}
+
+
+bool Boiler::contains(const Point& Pos){
+    if(BBurner->contains(Pos) == true){     //Prüfe, ob Mausklick im Bereich von Burner ist
+        return true;
+    }
+    if((Pos.X >= Position.X)&&(Pos.X <= (Position.X + Dimension.X))){       //Prüfe, ob Mausklick im
+        if((Pos.Y >= Position.Y)&&(Pos.Y <= (Position.Y + Dimension.Y))){   //Bereich von Boiler ist
+            return true;
+        }
+    }
+    return false;
 }
