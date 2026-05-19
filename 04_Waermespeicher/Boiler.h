@@ -27,7 +27,7 @@ class Boiler
         void extractMedium(double AmountRequested,
                            double& AmountDelivered, double& Temperature);
         void show();
-
+        void activateHeating(double Amount);
 
         double ContentTemperature;
         double ContainedVolume;

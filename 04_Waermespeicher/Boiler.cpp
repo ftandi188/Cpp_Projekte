@@ -64,6 +64,14 @@ void Boiler::addHeat(double HeatAmount){
 }
 
 
+void Boiler::activateHeating(double Amount){
+    if(BBurner != nullptr){
+        BBurner->feedFuel(Amount);
+    }
+}
+
+
+
 void Boiler::show(){
     Rect(Position.X, Position.Y, Position.X + Dimension.X, Position.Y + Dimension.Y);
     Text(Position.X + 10, Position.Y + 10, Name.c_str());
