@@ -52,6 +52,7 @@
 		<Unit filename="Point.cpp" />
 		<Unit filename="Point.h" />
 		<Unit filename="Stages.h" />
+		<Unit filename="StorageComponentContainer.h" />
 		<Unit filename="WinAdapt.cpp" />
 		<Unit filename="WinAdapt.h" />
 		<Unit filename="main.cpp" />
