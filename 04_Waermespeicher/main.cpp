@@ -10,9 +10,9 @@
 #include "Pipeline.h"
 #endif
 #if STAGE == CREATE_CONTAINER || STAGE == CREATE_TEMPLATE
-#include "StorageComponentContainer.h"
-#endif
-
+#include "StorageComponentContainer.h"          //kA warum ausgegraut, Bedingung sollte eigentlich erfüllt sein
+#endif                                          //--> darauf keinen Wert legen, kann sein, dass Editor den Wert von
+                                                //STAGE nicht kennt, Compiler aber schon --> Editor dumm, Compiler schlau
 using namespace std;
 
 #if STAGE == CREATE_COMPONENTS || STAGE == INTEGRATE_COMPONENTS || STAGE == CREATE_PIPELINES
@@ -31,7 +31,7 @@ Point BoilerPositions[NUM_BOILERS]={Point(20,20), Point(400,20),
 string BoilerNames[NUM_BOILERS]={"Agnetha", "Benny", "Bjoern", "Frida"};
 #endif
 #if STAGE == CREATE_CONTAINER
-StorageComponentContainer BoilerList;
+StorageComponentContainer BoilerList;           //Definition Boilerlist
 #endif
 
 #if STAGE == CREATE_PIPELINES
@@ -180,7 +180,7 @@ void VtlInit(void)
 #if STAGE == CREATE_CONTAINER || STAGE == CREATE_TEMPLATE
     for (int i=0; i<4; i++)
     {
-        BoilerList.add(new Boiler(BoilerNames[i], BoilerPositions[i]));
+        BoilerList.add(new Boiler(BoilerNames[i], BoilerPositions[i]));     //Hier wird das Array angelegt
     }
 #endif
 #if STAGE == CREATE_TEMPLATE
@@ -212,8 +212,8 @@ void VtlPaint(int xl, int yo, int xr, int yu)
     Bu0.show();
 #endif
 #if STAGE == CREATE_CONTAINER || STAGE == CREATE_TEMPLATE
-    for (auto& Item : BoilerList)
-    {
+    for (auto& Item : BoilerList)       //begin und end werden in dieser automatischen Schleife
+    {                                   //im Hintergrund aufgerufen
         Item.show();
     }
 #endif

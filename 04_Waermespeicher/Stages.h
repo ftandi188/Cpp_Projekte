@@ -11,6 +11,6 @@
 
 // Configuration: Change as advised by manual
 #define ERROR_HANDLING 0
-#define STAGE INTEGRATE_COMPONENTS
+#define STAGE CREATE_CONTAINER
 
 #endif
