@@ -30,6 +30,7 @@ class Boiler
         void activateHeating(double Amount);
         bool contains(const Point& Pos);
 
+
         double ContentTemperature;
         double ContainedVolume;
         Point Position;

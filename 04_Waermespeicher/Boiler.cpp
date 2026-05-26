@@ -98,3 +98,20 @@ bool Boiler::contains(const Point& Pos){
     }
     return false;
 }
+
+
+void Boiler::extractMedium(double AmountRequested, double& AmountDelivered, double& Temperature){
+    Temperature = ContentTemperature;
+
+    if(AmountRequested <= ContainedVolume){     //Menge kann bereitgestellt werden
+        ContainedVolume -= AmountRequested;
+        AmountDelivered = AmountRequested;
+    }
+    else{                                       //es wird mehr gefordert als da ist
+        AmountDelivered = ContainedVolume;
+        ContainedVolume = 0;
+    }
+}
+
+
+
