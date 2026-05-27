@@ -49,6 +49,8 @@
 		<Unit filename="Boiler.h" />
 		<Unit filename="Burner.cpp" />
 		<Unit filename="Burner.h" />
+		<Unit filename="Pipeline.cpp" />
+		<Unit filename="Pipeline.h" />
 		<Unit filename="Point.cpp" />
 		<Unit filename="Point.h" />
 		<Unit filename="Stages.h" />
