@@ -1,11 +1,11 @@
 #ifndef STORAGECOMPONENTCONTAINER_H_INCLUDED
 #define STORAGECOMPONENTCONTAINER_H_INCLUDED
 
-template <typename Elementtype>
 
+template <typename Elementtype>
 class StorageComponentContainer;
 
-
+template <typename Elementtype>
 class StorageComponentContainerIterator
 {
 public:
@@ -50,7 +50,7 @@ public:
     }
 };
 
-
+template <typename Elementtype>
 class StorageComponentContainer
 {
 public:
