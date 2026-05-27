@@ -10,12 +10,18 @@ class Pipeline{
     Boiler* Target;
     int PumpSize;
 
+    Point Startpunkt;
+    Point Endpunkt;
+    Point Mitte;
+
+    void getPoints();
+
 public:
 
     Pipeline(Boiler* Source, Boiler* Target, int PumpSize = 40);
     void transferMedium(double Amount);
     void show();
-    bool contains(Point& Clickposition);
+    bool contains(Point Clickposition);
 };
 
 

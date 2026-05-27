@@ -11,6 +11,6 @@
 
 // Configuration: Change as advised by manual
 #define ERROR_HANDLING 0
-#define STAGE CREATE_CONTAINER
+#define STAGE CREATE_PIPELINES
 
 #endif

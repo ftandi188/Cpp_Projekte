@@ -3,7 +3,8 @@
 #include "Point.h"
 
 Pipeline::Pipeline(Boiler* uSource, Boiler* uTarget, int uPumpSize)         //Konstruktor
-                :Source(uSource), Target(uTarget), PumpSize(uPumpSize)
+                :Source(uSource), Target(uTarget), PumpSize(uPumpSize),
+                 Startpunkt(1,1), Endpunkt(1,1), Mitte(1,1)
                 {}
 
 
@@ -13,32 +14,29 @@ void Pipeline::transferMedium(double Amount){
 }
 
 
-void Pipeline::show(){
-    Point Startpunkt(1,1);
-    Point Endpunkt(1,1);
-
+void Pipeline::getPoints(){
     Startpunkt.X = Source->Position.X + (Source->Dimension.X)/2;
     Startpunkt.Y = Source->Position.Y + (Source->Dimension.Y)/2;
 
     Endpunkt.X = Target->Position.X + (Target->Dimension.X)/2;
     Endpunkt.Y = Target->Position.Y + (Target->Dimension.Y)/2;
 
-    Rect(Startpunkt.X, Startpunkt.Y, Endpunkt.X, Endpunkt.Y);
-    Elli((Startpunkt.X+Endpunkt.X-PumpSize)/2, (Startpunkt.Y+Endpunkt.Y-PumpSize)/2,
-         (Startpunkt.X+Endpunkt.X+PumpSize)/2, (Startpunkt.Y+Endpunkt.Y+PumpSize)/2);
+    Mitte.X = (Startpunkt.X+Endpunkt.X)/2;
+    Mitte.Y = (Startpunkt.Y+Endpunkt.Y)/2;
 }
 
-bool Pipeline::contains(Point& Clickposition){
-    Point Startpunkt(1,1);
-    Point Endpunkt(1,1);
-    Startpunkt.X = Source->Position.X + (Source->Dimension.X)/2;
-    Startpunkt.Y = Source->Position.Y + (Source->Dimension.Y)/2;
-    Endpunkt.X = Target->Position.X + (Target->Dimension.X)/2;
-    Endpunkt.Y = Target->Position.Y + (Target->Dimension.Y)/2;
 
-    Point Mitte((Startpunkt.X+Endpunkt.X)/2, (Startpunkt.Y+Endpunkt.Y)/2);
+void Pipeline::show(){
+    getPoints();
 
-    if((Mitte-Clickposition).abs() < PumpSize/2){
+    Line(Startpunkt.X, Startpunkt.Y, Endpunkt.X, Endpunkt.Y);
+    Elli(Mitte.X - PumpSize/2, Mitte.Y - PumpSize/2, Mitte.X + PumpSize/2, Mitte.Y + PumpSize/2);
+}
+
+bool Pipeline::contains(Point Clickposition){
+    getPoints();
+
+    if((Mitte-Clickposition) < PumpSize/2){
         return true;
     }
     return false;
