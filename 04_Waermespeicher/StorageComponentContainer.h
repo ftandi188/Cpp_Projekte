@@ -1,49 +1,51 @@
 #ifndef STORAGECOMPONENTCONTAINER_H_INCLUDED
 #define STORAGECOMPONENTCONTAINER_H_INCLUDED
 
+template <typename Elementtype>
+
 class StorageComponentContainer;
 
 
 class StorageComponentContainerIterator
 {
 public:
-    Boiler** ItemPointer;
+    Elementtype** ItemPointer;
 
-    StorageComponentContainerIterator(Boiler** Item)    //Konstruktor
+    StorageComponentContainerIterator<Elementtype>(Elementtype** Item)    //Konstruktor
                 :ItemPointer(Item)
                 {}
 
 
-    StorageComponentContainerIterator operator++(){     //Präinkrement
+    StorageComponentContainerIterator<Elementtype> operator++(){     //Präinkrement
         ItemPointer++;
         return *this;
     }
 
-    StorageComponentContainerIterator operator++(int x){      //Postinkrement
-        StorageComponentContainerIterator Backup(*this);
+    StorageComponentContainerIterator<Elementtype> operator++(int x){      //Postinkrement
+        StorageComponentContainerIterator<Elementtype> Backup(*this);
         ItemPointer++;
         return Backup;
     }
 
-    bool operator==(StorageComponentContainerIterator rhs){     //Prüfe Gleichheit
+    bool operator==(StorageComponentContainerIterator<Elementtype> rhs){     //Prüfe Gleichheit
         if(this->ItemPointer == rhs.ItemPointer){
             return true;
         }
         return false;
     }
 
-    bool operator!=(StorageComponentContainerIterator rhs){     //Prüfe Ungleichheit
+    bool operator!=(StorageComponentContainerIterator<Elementtype> rhs){     //Prüfe Ungleichheit
         if(this->ItemPointer == rhs.ItemPointer){
             return false;
         }
         return true;
     }
 
-    Boiler& operator*(){            //Überladen: doppelte Dereferenzierung
+    Elementtype& operator*(){            //Überladen: doppelte Dereferenzierung
         return **ItemPointer;
     }
 
-    Boiler* operator->(){           //Überladen: einfache Dereferenzierung
+    Elementtype* operator->(){           //Überladen: einfache Dereferenzierung
         return *ItemPointer;
     }
 };
@@ -52,32 +54,32 @@ public:
 class StorageComponentContainer
 {
 public:
-    Boiler** ContentList;       //Zeigt auf ein Pointer-Array
+    Elementtype** ContentList;       //Zeigt auf ein Pointer-Array
     int MaxSize;
     int CurrentSize;
 
 
-    StorageComponentContainer(int MSize=10)
+    StorageComponentContainer<Elementtype>(int MSize=10)
             :CurrentSize(0), MaxSize(MSize)
             {
-                ContentList = new Boiler*[MSize];
+                ContentList = new Elementtype*[MSize];
             }
 
-    ~StorageComponentContainer(){
+    ~StorageComponentContainer<Elementtype>(){
         for (int i=0; i<CurrentSize; i++){
             delete ContentList[i];
         }
         delete[] ContentList;
     }
 
-    void add(Boiler* NewOne){
+    void add(Elementtype* NewOne){
         if(CurrentSize < MaxSize){
             ContentList[CurrentSize] = NewOne;
             CurrentSize++;
         }
     }
 
-    Boiler* operator[](int Index){
+    Elementtype* operator[](int Index){
         return ContentList[Index];
     }
 
@@ -85,12 +87,12 @@ public:
         return CurrentSize;
     }
 
-    StorageComponentContainerIterator begin(){
-        return StorageComponentContainerIterator(ContentList);
+    StorageComponentContainerIterator<Elementtype> begin(){
+        return StorageComponentContainerIterator<Elementtype>(ContentList);
     }
 
-    StorageComponentContainerIterator end(){
-        return StorageComponentContainerIterator(ContentList + CurrentSize);
+    StorageComponentContainerIterator<Elementtype> end(){
+        return StorageComponentContainerIterator<Elementtype>(ContentList + CurrentSize);
     }
 };
 
