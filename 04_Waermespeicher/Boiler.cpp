@@ -60,7 +60,13 @@ void Boiler::addContent(double MediaTemperature, double MediaAmount){
 
 
 void Boiler::addHeat(double HeatAmount){
+    double BackupT = ContentTemperature;
     ContentTemperature += HeatAmount/(ContainedVolume*4.17);
+
+    if(ContentTemperature > 3000){
+        ContentTemperature = BackupT;
+        throw ExceptionBoilerOverheating(BackupT, ContainedVolume, HeatAmount, this);
+    }
 }
 
 
@@ -123,9 +129,9 @@ ExceptionBoilerOverheating::ExceptionBoilerOverheating(double uBoilerTemperature
 
 const char* ExceptionBoilerOverheating::what() const noexcept{
     std::stringstream Zeichenkette;
-    Zeichenkette << "Betroffener Kessel:" << FailingBoiler->Name << "; Temperatur vor Unfall"
-                 << BoilerTemperature << "°C; Fuellstand:" << BoilerContent
-                 << "l; zugef. Energie:" << AddedHeat << "kJ";
+    Zeichenkette << "Betroffener Kessel: " << FailingBoiler->Name << ";   Temperatur vor Unfall: "
+                 << BoilerTemperature << "Grad;   Fuellstand:" << BoilerContent
+                 << "l;   zugef. Energie: " << AddedHeat << "kJ";
 
     Fehlermeldung = Zeichenkette.str();
     return Fehlermeldung.c_str();

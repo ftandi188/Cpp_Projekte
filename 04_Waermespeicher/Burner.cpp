@@ -18,8 +18,8 @@ Burner::Burner(Boiler* uMyBoiler, const string& uName, const Point& uPosition)
 
 void Burner::feedFuel(double Amount){       //Brennstoff in Litern
     if(MyBoiler != nullptr){
-        ConsumedFuel += Amount;
         MyBoiler->addHeat(Amount*34.3);         //Faktor: siehe Aufzeichnungen
+        ConsumedFuel += Amount;
     }
 }
 

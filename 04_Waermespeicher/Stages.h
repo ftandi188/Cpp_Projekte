@@ -10,7 +10,7 @@
 #define CREATE_TEMPLATE 5
 
 // Configuration: Change as advised by manual
-#define ERROR_HANDLING 0
+#define ERROR_HANDLING 1
 #define STAGE CREATE_TEMPLATE
 
 #endif
