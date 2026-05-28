@@ -114,4 +114,19 @@ void Boiler::extractMedium(double AmountRequested, double& AmountDelivered, doub
 }
 
 
+ExceptionBoilerOverheating::ExceptionBoilerOverheating(double uBoilerTemperature,
+                        double uBoilerContent, double uAddedHeat, Boiler* uFailingBoiler)
+                        :BoilerTemperature(uBoilerTemperature), BoilerContent(uBoilerContent),
+                         AddedHeat(uAddedHeat), FailingBoiler(uFailingBoiler)
+                         {}
 
+
+const char* ExceptionBoilerOverheating::what() const noexcept{
+    std::stringstream Zeichenkette;
+    Zeichenkette << "Betroffener Kessel:" << FailingBoiler->Name << "; Temperatur vor Unfall"
+                 << BoilerTemperature << "°C; Fuellstand:" << BoilerContent
+                 << "l; zugef. Energie:" << AddedHeat << "kJ";
+
+    Fehlermeldung = Zeichenkette.str();
+    return Fehlermeldung.c_str();
+}

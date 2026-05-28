@@ -6,6 +6,23 @@
 #include "Burner.h"
 #include "Stages.h"
 
+
+class ExceptionBoilerOverheating : public std::exception{       //Von std::exception abgeleitete Klasse
+public:
+    mutable std::string Fehlermeldung;      //Gehört nicht zum logischen Zustand des Objekts
+                                            //Als const gekennzeichnete Methoden dürfen solche
+    double BoilerTemperature;               //Attribute trotzdem ändern
+    double BoilerContent;
+    double AddedHeat;
+    Boiler* FailingBoiler;
+
+    ExceptionBoilerOverheating (double BoilerTemperature, double BoilerContent,
+                                double AddedHeat, Boiler* FailingBoiler);
+
+    const char* what() const noexcept;
+};
+
+
 class Boiler
 {
     public:
