@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Digitalschaltung" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="DebugWindows">
+				<Option output="bin/Debug/Digitalschaltung" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+				<Linker>
+					<Add library="gdi32" />
+					<Add library="user32" />
+					<Add library="kernel32" />
+					<Add library="comctl32" />
+				</Linker>
+			</Target>
+			<Target title="DebugLinux">
+				<Option output="bin/Debug/Digitalschaltung" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="`pkg-config gtk+-2.0 --cflags`" />
+				</Compiler>
+				<Linker>
+					<Add option="`pkg-config gtk+-2.0 --libs`" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-std=c++11" />
+			<Add option="-Wno-deprecated-declarations" />
+		</Compiler>
+		<Unit filename="Circuit.cpp" />
+		<Unit filename="Circuit.h" />
+		<Unit filename="ComplexGates.cpp" />
+		<Unit filename="ComplexGates.h" />
+		<Unit filename="InputSignal.cpp" />
+		<Unit filename="InputSignal.h" />
+		<Unit filename="LogicExceptions.cpp" />
+		<Unit filename="LogicExceptions.h" />
+		<Unit filename="LogicGate.cpp" />
+		<Unit filename="LogicGate.h" />
+		<Unit filename="LogicGateSwitch.cpp" />
+		<Unit filename="LogicGateSwitch.h" />
+		<Unit filename="Oscillator.cpp" />
+		<Unit filename="Oscillator.h" />
+		<Unit filename="OutputSignal.cpp" />
+		<Unit filename="OutputSignal.h" />
+		<Unit filename="Point.cpp" />
+		<Unit filename="Point.h" />
+		<Unit filename="RGBColor.cpp" />
+		<Unit filename="RGBColor.h" />
+		<Unit filename="SimpleGates.cpp" />
+		<Unit filename="SimpleGates.h" />
+		<Unit filename="WinAdapt.cpp" />
+		<Unit filename="WinAdapt.h" />
+		<Unit filename="main.cpp" />
+		<Unit filename="testlevel.h" />
+		<Extensions>
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
