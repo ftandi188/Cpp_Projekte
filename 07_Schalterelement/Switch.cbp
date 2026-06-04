@@ -42,6 +42,8 @@
 			<Add option="-std=c++11" />
 			<Add option="-Wno-deprecated-declarations" />
 		</Compiler>
+		<Unit filename="ColorBox.cpp" />
+		<Unit filename="ColorBox.h" />
 		<Unit filename="Point.cpp" />
 		<Unit filename="Point.h" />
 		<Unit filename="RGBColor.cpp" />

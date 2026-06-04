@@ -66,7 +66,7 @@ void Boiler::addHeat(double HeatAmount){
     if(ContentTemperature > 3000){
         ContentTemperature = BackupT;
         throw ExceptionBoilerOverheating(BackupT, ContainedVolume, HeatAmount, this);
-    }
+    }   //Exception-Objekt wird hier erzeugt
 }
 
 

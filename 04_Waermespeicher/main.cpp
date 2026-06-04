@@ -67,7 +67,7 @@ void VtlMouse(int X, int Y)
     }
 #if ERROR_HANDLING
     }
-    catch (ExceptionBoilerOverheating& a)
+    catch (ExceptionBoilerOverheating& a)   //Nur der Typ der Exception muss hier passen, der Name a ist beliebig
     {
         std::cout << a.what() << std::endl;
     }
