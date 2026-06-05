@@ -5,7 +5,7 @@
 #define SWITCH_H_INCLUDED
 
 
-class Switch{
+class Switch : public ColorBox{
 protected:
     bool State;
     ColorBox* Indicator;

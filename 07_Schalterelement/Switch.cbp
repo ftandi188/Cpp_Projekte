@@ -50,6 +50,8 @@
 		<Unit filename="RGBColor.h" />
 		<Unit filename="Switch.cpp" />
 		<Unit filename="Switch.h" />
+		<Unit filename="SwitchOnOff.cpp" />
+		<Unit filename="SwitchOnOff.h" />
 		<Unit filename="TextBox.cpp" />
 		<Unit filename="TextBox.h" />
 		<Unit filename="WinAdapt.cpp" />
