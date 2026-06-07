@@ -73,7 +73,7 @@ void Switch::show() const{
     Indicator->show();
 }
 
-Switch& Switch::operator=(Switch& rhs){
+Switch& Switch::operator=(const Switch& rhs){
     if(this != &rhs){       //Verhindere Selbstzuweisung
         State = rhs.State;
         Position = rhs.Position;

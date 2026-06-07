@@ -16,7 +16,7 @@ public:
 
     void onMouse(const Point& p);
     void setPosition(const Point& p);
-    SwitchOnOff& operator=(SwitchOnOff& s);
+    SwitchOnOff& operator=(const SwitchOnOff& s);
     void show();
 };
 

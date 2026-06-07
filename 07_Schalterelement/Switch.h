@@ -23,7 +23,7 @@ public:
     void setState(bool State);
     void show() const;
 
-    Switch& operator=(Switch& rhs);
+    Switch& operator=(const Switch& rhs);
 };
 
 

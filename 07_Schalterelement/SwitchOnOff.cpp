@@ -36,10 +36,10 @@ void SwitchOnOff::setPosition(const Point& p){
     Position = p - Point(69,-3);
     OnButton->setPosition(p - Point(66,0));
     OffButton->setPosition(p - Point(33,0));
-    Indicator->setPosition(p);
-}
+    Indicator->setPosition(p);      //Hätte auch setPosition von Klasse Switch aufrufen können, un dann nur noch
+}                                   //OnButton und OffButton manuell setzen müssen
 
-SwitchOnOff& SwitchOnOff::operator=(SwitchOnOff& s){
+SwitchOnOff& SwitchOnOff::operator=(const SwitchOnOff& s){
     if(this != &s){
         Switch::operator=(s);
 
