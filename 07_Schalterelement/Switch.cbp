@@ -52,6 +52,8 @@
 		<Unit filename="Switch.h" />
 		<Unit filename="SwitchOnOff.cpp" />
 		<Unit filename="SwitchOnOff.h" />
+		<Unit filename="SwitchPulse.cpp" />
+		<Unit filename="SwitchPulse.h" />
 		<Unit filename="SwitchToggle.cpp" />
 		<Unit filename="SwitchToggle.h" />
 		<Unit filename="TextBox.cpp" />
