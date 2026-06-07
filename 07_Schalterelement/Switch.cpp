@@ -13,7 +13,6 @@ Switch::Switch(const Switch& Source)
         :State(Source.State), Indicator(new ColorBox(Source.Indicator->getPosition(),
                                         Source.Indicator->getSize(),Source.Indicator->getColor())),
          ColorBox(Source.Position, Source.Size, Source.Color)
-
         {}
 
 Switch::Switch(const Point& uPosition)
@@ -30,12 +29,12 @@ void Switch::onMouse(Point& Position){
 
 }
 
-void Switch::setPosition(const Point& uPosition){
+void Switch::setPosition(Point uPosition){
     Indicator->ColorBox::setPosition(uPosition);
     Position = Point(uPosition.X-69, uPosition.Y-3);
 }
 
-bool Switch::getState(){
+bool Switch::getState() const{
     return State;
 }
 
@@ -51,7 +50,7 @@ void Switch::setState(bool uState){
     }
 }
 
-void Switch::show(){
+void Switch::show() const{
 
     int Koordinaten[8];
     Rect(Position.X, Position.Y, Position.X + Size.X, Position.Y + Size.Y);
@@ -75,7 +74,7 @@ void Switch::show(){
 }
 
 Switch& Switch::operator=(Switch& rhs){
-    if(this == &rhs){       //Verhindere Selbstzuweisung
+    if(this != &rhs){       //Verhindere Selbstzuweisung
         State = rhs.State;
         Position = rhs.Position;
         Size = rhs.Size;
@@ -84,4 +83,5 @@ Switch& Switch::operator=(Switch& rhs){
 
         Indicator = new ColorBox(rhs.Indicator->getPosition(), rhs.Indicator->getSize(), rhs.Indicator->getColor());
     }
+    return *this;
 }

@@ -17,11 +17,11 @@ public:
     ~Switch();
 
     void onMouse(Point& Position);
-    void setPosition(const Point& Position);
+    void setPosition(Point Position);
 
-    bool getState();
+    bool getState() const;
     void setState(bool State);
-    void show();
+    void show() const;
 
     Switch& operator=(Switch& rhs);
 };
