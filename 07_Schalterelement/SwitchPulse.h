@@ -10,13 +10,13 @@ protected:
     int DecayTime;
 
 public:
-    SwitchPulse(const Point& pos,const std::string& Label, int DecayTime=15);
+    SwitchPulse(const Point& pos,const std::string& Label = "Push", int DecayTime=15);
     ~SwitchPulse();
 
     void onTimerTick();
 
-    void show() const;
-    void onMouse(const Point& p);
+    void show() const override;
+    void onMouse(const Point& p) override;
     void setPosition(const Point& pos);
 };
 

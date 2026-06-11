@@ -15,7 +15,7 @@
 #define TEST_DESTRUCTOR 11
 // define current testlevel here by using a constant from above
 
-#define TEST_LEVEL TEST_SWITCH_PULSE
+#define TEST_LEVEL TEST_DESTRUCTOR
 
 #endif
 

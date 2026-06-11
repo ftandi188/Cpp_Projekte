@@ -1,6 +1,6 @@
 #include "SwitchPulse.h"
 
-SwitchPulse::SwitchPulse(const Point& pos,const std::string& Label = "Push", int uDecayTime)
+SwitchPulse::SwitchPulse(const Point& pos,const std::string& Label, int uDecayTime)
             :DecayTime(uDecayTime),PushButton(new TextBox(Point(pos.X-66,pos.Y),Point(63,30),Label)),
              Switch(pos)
 {}

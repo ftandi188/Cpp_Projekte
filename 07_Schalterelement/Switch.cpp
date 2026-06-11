@@ -25,11 +25,11 @@ Switch::~Switch(){
     delete Indicator;
 }
 
-void Switch::onMouse(Point& Position){
+void Switch::onMouse(const Point& Position){
 
 }
 
-void Switch::setPosition(Point uPosition){
+void Switch::setPosition(const Point& uPosition){
     Indicator->ColorBox::setPosition(uPosition);
     Position = Point(uPosition.X-69, uPosition.Y-3);
 }
@@ -85,3 +85,4 @@ Switch& Switch::operator=(const Switch& rhs){
     }
     return *this;
 }
+

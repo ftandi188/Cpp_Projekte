@@ -11,7 +11,7 @@ SwitchOnOff::SwitchOnOff(const SwitchOnOff& s)
 
 {}
 
-SwitchOnOff::SwitchOnOff(const Point& pos,const std::string& OnButtonLabel="1",const std::string& OffButtonLabel="0")
+SwitchOnOff::SwitchOnOff(const Point& pos,const std::string& OnButtonLabel,const std::string& OffButtonLabel)
                 :OnButton(new TextBox(Point(pos.X-66,pos.Y),Point(30,30),OnButtonLabel)),    //für Farbe ist ein Default hinterlegt
                  OffButton(new TextBox(Point(pos.X-33,pos.Y),Point(30,30),OffButtonLabel)),  //Konstruktor für Textbox übernimmt bereits die
                  Switch(Point(pos.X,pos.Y))                                                  //Initialisierung der Attribute von ColorBox
@@ -33,7 +33,7 @@ void SwitchOnOff::onMouse(const Point& p){
 }
 
 void SwitchOnOff::setPosition(const Point& p){
-    Position = p - Point(69,-3);
+    Position = p - Point(69,3);
     OnButton->setPosition(p - Point(66,0));
     OffButton->setPosition(p - Point(33,0));
     Indicator->setPosition(p);      //Hätte auch setPosition von Klasse Switch aufrufen können, un dann nur noch
@@ -51,7 +51,7 @@ SwitchOnOff& SwitchOnOff::operator=(const SwitchOnOff& s){
     }
 }
 
-void SwitchOnOff::show(){
+void SwitchOnOff::show() const{
     Switch::show();
     OnButton->show();
     OffButton->show();

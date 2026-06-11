@@ -14,16 +14,18 @@ public:
     Switch();
     Switch(const Switch& Source);
     Switch(const Point& Position);
-    ~Switch();
+    virtual ~Switch();
 
-    void onMouse(Point& Position);
-    void setPosition(Point Position);
+    virtual void onMouse(const Point& Position);
+    virtual void setPosition(const Point& Position);
 
     bool getState() const;
     void setState(bool State);
-    void show() const;
+    virtual void show() const;
 
     Switch& operator=(const Switch& rhs);
+
+
 };
 
 

@@ -14,7 +14,7 @@ public:
 
     std::string getText() const;
     void setText(const std::string& Text);
-    void show() const;
+    virtual void show() const;
 };
 
 

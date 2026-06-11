@@ -43,7 +43,7 @@ TextBox t(Point(100, 100), Point(100, 30), "Hello World!");
 #endif
 
 #if TEST_LEVEL >= TEST_SWITCH
-Switch s(Point(100, 100));
+Switch s(Point(163, 100));      //Geändert
 Switch s2(Point(100, 200));
 Switch s3(Point(100, 300));
 #endif
@@ -61,7 +61,7 @@ SwitchPulse sp(Point(100, 100), "Push");
 #endif
 
 #if TEST_LEVEL == TEST_ALL
-#define NUM_SWITCHES 20
+#define NUM_SWITCHES 20                                 //Initialisierung
 Switch* sArray[NUM_SWITCHES]={nullptr};
 SwitchPulse* spArray[NUM_SWITCHES]={nullptr};
 int CntrSP=0;
@@ -193,12 +193,16 @@ void VtlInit(void)
 #endif
 
 #if TEST_LEVEL == TEST_ALL
-    Point p(s.getPosition());
+    Point p(s.getPosition());               //Referenzpunkt
 
     for (int i=0;i<NUM_SWITCHES;i++)
     {
-        Point d(10+130*(i/5), 50*(i%5)+10*(i/5));
-        switch (i%4)
+        Point d(10+130*(i/5), 50*(i%5)+10*(i/5));       //x-Koord.: int-Division, Faktor ist: 0,0,0,0,0,1,1,1,1,1,2,...
+                                                        //y-Koord.: modulo, damit es immer wieder zurückspringt, hintere
+                                                        //Komponente bewirkt Offset zwischen den Spalten
+
+
+        switch (i%4)        //Versatz, da hier 4er Prinzip, beim Ausgaberaster aber 5er Prinzip
         {
             case 0:
             sArray[i]=new Switch(Point(1,1));
@@ -258,7 +262,7 @@ void VtlPaint(int xl, int yo, int xr, int yu)
 
 #if TEST_LEVEL == TEST_ALL
     for (int i=0;i<NUM_SWITCHES;i++) {
-	sArray[i]->show();
+	sArray[i]->show();                  //Ausgabe aller Switches
     }
 #endif
 }

@@ -1,3 +1,4 @@
+#include <iostream>
 #include "SwitchToggle.h"
 #include "TextBox.h"
 
@@ -7,7 +8,7 @@ SwitchToggle::SwitchToggle(const SwitchToggle& s)
              Switch(s)
 {}
 
-SwitchToggle::SwitchToggle(const Point& pos,const std::string& ToggleButtonLabel = "1/0")
+SwitchToggle::SwitchToggle(const Point& pos,const std::string& ToggleButtonLabel)
             :ToggleButton(new TextBox(Point(pos.X-66,pos.Y),Point(63,30),ToggleButtonLabel)),
              Switch(pos)
 {}

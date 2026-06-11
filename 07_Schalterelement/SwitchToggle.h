@@ -12,12 +12,12 @@ protected:
 
 public:
     SwitchToggle(const SwitchToggle& s);
-    SwitchToggle(const Point& pos,const std::string& ToggleButtonLabel);
+    SwitchToggle(const Point& pos,const std::string& ToggleButtonLabel = "1/0");
     ~SwitchToggle();
 
-    void onMouse(const Point& p);
+    void onMouse(const Point& p) override;
     void setPosition(const Point& p);
-    void show() const;
+    void show() const override;
 
     SwitchToggle& operator=(const SwitchToggle& s);
 };
