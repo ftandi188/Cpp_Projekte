@@ -12,20 +12,21 @@ LogicGate::LogicGate(const string & Operation,
                      const Point& Position,
                      const string& ID,
                      unsigned NumInputs)
-:TextBox(Position, Point(100,70), Operation),
- Input(NumInputs, InputSignal(*this, Point(0,0), false)),
- Output(Position+getSize().scaleY(.5), false),
- Indicator(getPosition()+getSize()-Point(15,15), Point(10,10),RGBColor(255,0,0)),
+
+:TextBox(Position, Point(100,70), Operation),               //Konstruktor TextBox
+ Input(NumInputs, InputSignal(*this, Point(0,0), false)),   //Konstruktor des Vektors (siehe OneNote)
+ Output(Position+getSize().scaleY(.5), false),              //Konstruktor OutputSignal
+ Indicator(getPosition()+getSize()-Point(15,15), Point(10,10),RGBColor(255,0,0)),   //Konstruktor ColorBox
  ID(ID)
 {
-    positionElements();
+    positionElements();     //Positionieren der InputSignal-Objekte im Vektor
 }
 
 LogicGate::~LogicGate()
 {
 }
 
-bool LogicGate::operator==(const string& ID)
+bool LogicGate::operator==(const string& ID) const
 {
       return LogicGate::ID==ID;
 }
