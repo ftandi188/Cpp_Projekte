@@ -42,6 +42,8 @@
 		</Compiler>
 		<Unit filename="Circuit.cpp" />
 		<Unit filename="Circuit.h" />
+		<Unit filename="ColorBox.cpp" />
+		<Unit filename="ColorBox.h" />
 		<Unit filename="ComplexGates.cpp" />
 		<Unit filename="ComplexGates.h" />
 		<Unit filename="InputSignal.cpp" />
@@ -62,6 +64,16 @@
 		<Unit filename="RGBColor.h" />
 		<Unit filename="SimpleGates.cpp" />
 		<Unit filename="SimpleGates.h" />
+		<Unit filename="Switch.cpp" />
+		<Unit filename="Switch.h" />
+		<Unit filename="SwitchOnOff.cpp" />
+		<Unit filename="SwitchOnOff.h" />
+		<Unit filename="SwitchPulse.cpp" />
+		<Unit filename="SwitchPulse.h" />
+		<Unit filename="SwitchToggle.cpp" />
+		<Unit filename="SwitchToggle.h" />
+		<Unit filename="TextBox.cpp" />
+		<Unit filename="TextBox.h" />
 		<Unit filename="WinAdapt.cpp" />
 		<Unit filename="WinAdapt.h" />
 		<Unit filename="main.cpp" />
