@@ -42,7 +42,7 @@ public:
     virtual void setPosition(const Point& Position);
     virtual void setSize(const Point& Size);
     virtual void show() const;
-    virtual void updateOutput(){};      //Taucht in cpp-Datei nicht mehr auf
+    virtual void updateOutput() = 0;      //Taucht in cpp-Datei nicht mehr auf
     virtual bool getOutput(unsigned Port=0) const;
     unsigned getNumOutputs() const;
     unsigned getNumInputs() const;

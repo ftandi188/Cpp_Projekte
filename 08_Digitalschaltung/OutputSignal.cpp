@@ -16,12 +16,20 @@ OutputSignal::OutputSignal(const Point& Position,
 
 OutputSignal::~OutputSignal()
 {
+    for (auto& in : FanOut){
+        in->disconnectInput();
+    }
     //FIXME! throw ExceptionFunctionNotImplemented();
 }
 
 void OutputSignal::sendState(bool NewState)
 {
-    throw ExceptionFunctionNotImplemented();
+    if(NewState != LastState){
+        for (auto& in : FanOut){
+            in->setState(NewState);
+        }
+        LastState = NewState;
+    }
 }
 
 bool OutputSignal::getLastState() const
@@ -31,12 +39,21 @@ bool OutputSignal::getLastState() const
 
 void OutputSignal::connectToConsumer(LogicGate& Consumer, unsigned Port)
 {
-    throw ExceptionFunctionNotImplemented();
+    InputSignal& temp = Consumer.connectInput(*this, LastState, Port);
+    FanOut.push_back(&temp);
 }
 
 void OutputSignal::disconnectConsumer(InputSignal& Consumer)
 {
-    throw ExceptionFunctionNotImplemented();
+    int i=0;
+    Consumer.disconnectInput();
+    for (auto& in : FanOut){
+        if(in == &Consumer){
+            break;
+        }
+        i++;
+    }
+    FanOut.erase(FanOut.begin() + i);
 }
 
 void OutputSignal::show() const

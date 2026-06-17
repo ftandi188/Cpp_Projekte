@@ -103,6 +103,7 @@ void LogicGate::connectOutput(LogicGate& Peer, unsigned Index)     //Ausgang mit
 void LogicGate::decorate() const
 {
     Indicator.show();
+    Output.show();
 }
 
 void LogicGate::setPosition(const Point& Position)
