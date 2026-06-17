@@ -48,46 +48,67 @@ const string& LogicGate::getID() const
 
 void LogicGate::show() const
 {
-    throw ExceptionFunctionNotImplemented();
+    Point p(Output.getPosition());
+    Point q(Output.getPosition() + Output.getSize());
+    Rect(p.X, p.Y, q.X, q.Y);           //eine Möglichkeit
+
+    for (auto& in : Input){                                             //Zweite Möglichkeit
+        Rect(in.getPosition().X, in.getPosition().Y, in.getPosition().X + in.getSize().X, in.getPosition().Y + in.getSize().Y);
+        TextBox::show();
+        ::Text(Position.X + 10, Position.Y + Size.Y - 20, ID.c_str());
+    }
+    decorate();
 }
+
 
 void LogicGate::updateIndicator()
 {
-    throw ExceptionFunctionNotImplemented();
+    if(Output.getLastState() == false){
+        Indicator.setColor(RGBColor(255,0,0));
+    }
+    else{
+        Indicator.setColor(RGBColor(0,255,0));
+    }
 }
 
-bool LogicGate::getOutput(unsigned Index) const
+bool LogicGate::getOutput(unsigned Index) const     //Brauchen wir nicht, da nur ein Ausgang
 {
     throw ExceptionFunctionNotImplemented();
     return false;
 }
 
-void LogicGate::setOutput(bool NewState, unsigned Port)
+void LogicGate::setOutput(bool NewState, unsigned Port)     //Zweiter Parameter wird nicht benötigt
 {
-    throw ExceptionFunctionNotImplemented();
+    Output.sendState(NewState);
+    updateIndicator();
 }
 
 
-InputSignal& LogicGate::connectInput(OutputSignal& From,
-                                          bool CurrentState,
-                                          unsigned Index)
-{
-    throw ExceptionFunctionNotImplemented();
+InputSignal& LogicGate::connectInput(OutputSignal& From, bool CurrentState, unsigned Index)
+{                                                           //Aufruf durch Output-Objekt eines fremden Gatters, das einen Eingang belegen will
+    if(Index >= getNumInputs()){
+        throw ExceptionIllegalInputChannel();
+    }
+    else{
+        Input[Index].connect(From, CurrentState);
+        return Input[Index];
+    }
 }
 
-void LogicGate::connectOutput(LogicGate& Peer, unsigned Index)
-{
-    throw ExceptionFunctionNotImplemented();
+void LogicGate::connectOutput(LogicGate& Peer, unsigned Index)     //Ausgang mit Eingang eines anderen LogicGates (Peer) verbinden
+{                                                                  //Aufruf durch Output-Objekt als Member vom LogicGate-Objekt, das
+    Output.connectToConsumer(Peer, Index);                         //fremden Eingang belegen will
 }
 
 void LogicGate::decorate() const
 {
-    throw ExceptionFunctionNotImplemented();
+    Indicator.show();
 }
 
 void LogicGate::setPosition(const Point& Position)
 {
-    throw ExceptionFunctionNotImplemented();
+    TextBox::setPosition(Position);
+    positionElements();
 }
 
 void LogicGate::setSize(const Point& Size)
@@ -98,7 +119,13 @@ void LogicGate::setSize(const Point& Size)
 
 void LogicGate::positionElements()
 {
-    throw ExceptionFunctionNotImplemented();
+    Indicator.setPosition(Point(Position.X + 75, Position.Y + 45));
+
+    int n = getNumInputs();
+    for(int i=0; i<n; i++){
+        Input[i].setPosition(Point(Position.X - 4, Position.Y + (i+1)*(70-2*n)/(n+1) + 2*i));
+    }
+    Output.setPosition(Point(Position.X + 100, Position.Y + 33));
 }
 
 #endif

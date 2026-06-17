@@ -42,12 +42,15 @@ public:
     virtual void setPosition(const Point& Position);
     virtual void setSize(const Point& Size);
     virtual void show() const;
-    virtual void updateOutput(){};
+    virtual void updateOutput(){};      //Taucht in cpp-Datei nicht mehr auf
     virtual bool getOutput(unsigned Port=0) const;
     unsigned getNumOutputs() const;
     unsigned getNumInputs() const;
     void connectOutput(LogicGate& Peer, unsigned Port=0);
     InputSignal& connectInput(OutputSignal& From, bool CurrentState, unsigned Port=0);
+
+    LogicGate(const LogicGate& orig) = delete;
+    LogicGate& operator=(const LogicGate& rhs) = delete;
 };
 
 #endif
