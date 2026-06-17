@@ -10,7 +10,7 @@ class OutputSignal;
 class InputSignal :public ColorBox{
 private:
     LogicGate& LocalGate;           //Referenz auf Gatter, zu dem es gehört
-    OutputSignal* RemoteOutput;
+    OutputSignal* RemoteOutput;     //Pointer auf verbundenen Output
     bool State;                     //Speichert den vom verbundenen Ausgang zuletzt übermittelten Logikwert
     bool Connected;                 //Zeigt Verbindungsstatus an
 

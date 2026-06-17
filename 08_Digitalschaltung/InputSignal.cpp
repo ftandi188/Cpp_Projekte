@@ -5,7 +5,7 @@
 #if TEST_LEVEL > TEST_START
 
 
-InputSignal::InputSignal(LogicGate& LocalGate,
+InputSignal::InputSignal(LogicGate& LocalGate,              //Konstruktor
                          const Point& Position,
                          bool InitialState)
 :ColorBox(Position, Point(4,2), RGBColor(128,128,128)),
@@ -18,13 +18,13 @@ InputSignal::InputSignal(LogicGate& LocalGate,
 
 InputSignal::~InputSignal()
 {
-    throw ExceptionFunctionNotImplemented();
+    disconnectInput();
 }
 
 void InputSignal::setState(bool NewState)
 {
-    throw ExceptionFunctionNotImplemented();
-
+    State = NewState;
+    LocalGate.updateOutput();
 }
 
 bool InputSignal::getState() const
@@ -40,13 +40,25 @@ bool InputSignal::isConnected() const
 
 void InputSignal::disconnectInput()
 {
-    throw ExceptionFunctionNotImplemented();
+    if(Connected == true){
+        RemoteOutput->disconnectConsumer(*this);
+        Connected = false;
+        RemoteOutput = nullptr;
+    }
 }
 
-InputSignal& InputSignal::connect(OutputSignal& From,
-                                  bool InitialState)
+InputSignal& InputSignal::connect(OutputSignal& From, bool InitialState)
 {
-    throw ExceptionFunctionNotImplemented();
+    if(Connected == true){
+        throw ExceptionInputConnected();
+    }
+    else{
+        RemoteOutput = &From;
+        Connected = true;
+        State = InitialState;
+        LocalGate.updateOutput();
+        return *this;
+    }
 }
 
 #endif
