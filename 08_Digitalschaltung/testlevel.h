@@ -28,7 +28,7 @@
 
 // define current testlevel here by using a constant from above
 
-#define TEST_LEVEL TEST_LOGICGATECOMM
+#define TEST_LEVEL TEST_SIMPLEGATES
 
 #endif
 
