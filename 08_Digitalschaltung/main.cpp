@@ -65,7 +65,7 @@ LogicGateNAND GateNAND(Point(530, 60), "G5");
 #endif // TEST_LEVEL
 
 #if TEST_LEVEL >= TEST_CIRCUIT_AVAILABLE
-Circuit MyCircuit(1000/BOARDTIMER);
+Circuit MyCircuit(1000/BOARDTIMER);         //Nutze ich ebenfalls für eigene Schaltung
 #endif
 
 
@@ -137,6 +137,65 @@ void VtlInit(void)
     MyCircuit["SW1"].connectOutput(MyCircuit["G1"], 0);
     MyCircuit["SW2"].connectOutput(MyCircuit["G1"], 1);
 #endif
+
+#if TEST_LEVEL == TEST_CIRCUIT_COMPLETE
+    MyCircuit.addSwitch(new LogicGateSwitch("A", Point(20,20), "SW1", 0));
+    MyCircuit.addSwitch(new LogicGateSwitch("B", Point(20,100), "SW2", 1));
+    MyCircuit.addSwitch(new LogicGateSwitch("C", Point(20,180), "SW3", 1));
+    MyCircuit.addSwitch(new LogicGateSwitch("D", Point(20,260), "SW4", 0));
+    MyCircuit.addSwitch(new LogicGateSwitch("E", Point(450,345), "SW5", 2));
+    MyCircuit.addSwitch(new LogicGateSwitch("F", Point(450,387), "SW6", 0));
+
+    MyCircuit.addGate(new LogicGateAND(Point(390,30), "G1",4));
+    MyCircuit.addGate(new LogicGateAND(Point(390,110), "G2",4));
+    MyCircuit.addGate(new LogicGateAND(Point(390,190), "G3",4));
+    MyCircuit.addGate(new LogicGateAND(Point(390,270), "G4",4));
+
+    MyCircuit.addGate(new LogicGateNOT(Point(260,7), "G5"));
+    MyCircuit.addGate(new LogicGateNOT(Point(260,102), "G6"));
+    MyCircuit.addGate(new LogicGateNOT(Point(260,197), "G7"));
+    MyCircuit.addGate(new LogicGateNOT(Point(260,292), "G8"));
+
+    MyCircuit["SW1"].connectOutput(MyCircuit["G5"],0);
+    MyCircuit["G5"].connectOutput(MyCircuit["G1"],0);
+    MyCircuit["SW2"].connectOutput(MyCircuit["G1"],1);
+    MyCircuit["SW3"].connectOutput(MyCircuit["G1"],2);
+    MyCircuit["SW4"].connectOutput(MyCircuit["G1"],3);
+
+    MyCircuit["SW2"].connectOutput(MyCircuit["G6"],0);
+    MyCircuit["G6"].connectOutput(MyCircuit["G2"],1);
+    MyCircuit["SW1"].connectOutput(MyCircuit["G2"],0);
+    MyCircuit["SW3"].connectOutput(MyCircuit["G2"],2);
+    MyCircuit["SW4"].connectOutput(MyCircuit["G2"],3);
+
+    MyCircuit["SW3"].connectOutput(MyCircuit["G7"],0);
+    MyCircuit["G7"].connectOutput(MyCircuit["G3"],2);
+    MyCircuit["SW1"].connectOutput(MyCircuit["G3"],0);
+    MyCircuit["SW2"].connectOutput(MyCircuit["G3"],1);
+    MyCircuit["SW4"].connectOutput(MyCircuit["G3"],3);
+
+    MyCircuit["SW4"].connectOutput(MyCircuit["G8"],0);
+    MyCircuit["G8"].connectOutput(MyCircuit["G4"],3);
+    MyCircuit["SW1"].connectOutput(MyCircuit["G4"],0);
+    MyCircuit["SW2"].connectOutput(MyCircuit["G4"],1);
+    MyCircuit["SW3"].connectOutput(MyCircuit["G4"],2);
+
+    MyCircuit.addGate(new LogicGateOR(Point(580,150), "G9",4));
+    MyCircuit["G1"].connectOutput(MyCircuit["G9"],0);
+    MyCircuit["G2"].connectOutput(MyCircuit["G9"],1);
+    MyCircuit["G3"].connectOutput(MyCircuit["G9"],2);
+    MyCircuit["G4"].connectOutput(MyCircuit["G9"],3);
+
+    MyCircuit.addGate(new LogicGateXOR(Point(675,347), "G10"));
+    MyCircuit["SW5"].connectOutput(MyCircuit["G10"],0);
+    MyCircuit["SW6"].connectOutput(MyCircuit["G10"],1);
+
+    MyCircuit.addGate(new LogicGateAND(Point(800,200), "G11"));
+    MyCircuit["G9"].connectOutput(MyCircuit["G11"],0);
+    MyCircuit["G10"].connectOutput(MyCircuit["G11"],1);
+
+
+#endif // TEST_LEVEL
 }
 
 void VtlPaint(int xl, int yo, int xr, int yu)
