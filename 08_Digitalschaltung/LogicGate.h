@@ -33,7 +33,7 @@ protected:
     void setOutput(bool NewState, unsigned Port=0);
 
 public:
-    LogicGate(const string& Operation, const Point& Position, const string& ID, unsigned NumInputs=2);
+    LogicGate(const string& Operation, const Point& Position, const string& ID, unsigned NumInputs=2, const Point& Size = Point(100,70));
     //Operation und Position für Basisinitialisierer von TextBox (Größe ist im Konstruktor fest hinterlegt)
     virtual ~LogicGate();
 

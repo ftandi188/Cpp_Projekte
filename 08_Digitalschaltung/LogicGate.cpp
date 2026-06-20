@@ -11,11 +11,12 @@ using std::vector;
 LogicGate::LogicGate(const string & Operation,
                      const Point& Position,
                      const string& ID,
-                     unsigned NumInputs)
+                     unsigned NumInputs,
+                     const Point& Size)     //selber hinzugefügt
 
-:TextBox(Position, Point(100,70), Operation),               //Konstruktor TextBox
+:TextBox(Position, Size, Operation),               //Konstruktor TextBox
  Input(NumInputs, InputSignal(*this, Point(0,0), false)),   //Konstruktor des Vektors (siehe OneNote)
- Output(Position+getSize().scaleY(.5), false),              //Konstruktor OutputSignal
+ Output(Position+Size.scaleY(.5), false),              //Konstruktor OutputSignal
  Indicator(getPosition()+getSize()-Point(15,15), Point(10,10),RGBColor(255,0,0)),   //Konstruktor ColorBox
  ID(ID)
 {
@@ -48,16 +49,22 @@ const string& LogicGate::getID() const
 
 void LogicGate::show() const
 {
+    /* //unnötiger Code: Output.show aufrufen!
     Point p(Output.getPosition());
     Point q(Output.getPosition() + Output.getSize());
     Rect(p.X, p.Y, q.X, q.Y);           //eine Möglichkeit
+    */
 
     for (auto& in : Input){                                             //Zweite Möglichkeit
         Rect(in.getPosition().X, in.getPosition().Y, in.getPosition().X + in.getSize().X, in.getPosition().Y + in.getSize().Y);
-        TextBox::show();
-        ::Text(Position.X + 10, Position.Y + Size.Y - 20, ID.c_str());
     }
+
+    TextBox::show();
+    ::Text(Position.X + 10, Position.Y + Size.Y - 20, ID.c_str());
+
     decorate();
+    //this->positionElements();
+    Output.show();
 }
 
 
@@ -126,7 +133,7 @@ void LogicGate::positionElements()
     for(int i=0; i<n; i++){
         Input[i].setPosition(Point(Position.X - 4, Position.Y + (i+1)*(70-2*n)/(n+1) + 2*i));
     }
-    Output.setPosition(Point(Position.X + 100, Position.Y + 33));
+    Output.setPosition(Point(Position.X + Size.X, Position.Y + 0.5*Size.Y));
 }
 
 #endif

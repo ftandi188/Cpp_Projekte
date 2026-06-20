@@ -7,9 +7,11 @@
 class SwitchPulse : public Switch{
 protected:
     TextBox* PushButton;
-    int DecayTime;
+
 
 public:
+    int DecayTime;
+
     SwitchPulse(const Point& pos,const std::string& Label = "Push", int DecayTime=15);
     ~SwitchPulse();
 

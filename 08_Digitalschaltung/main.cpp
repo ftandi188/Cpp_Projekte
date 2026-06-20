@@ -55,11 +55,13 @@ LogicGateNOT GateNOT(Point(410,110), "G5");
 LogicGateSwitch SW1("IN1", Point(20, 10), "SW1", 0);
 LogicGateSwitch SW2("IN2", Point(20, 60), "SW2", 1);
 LogicGateSwitch SW3("IN3", Point(20, 110), "SW3", 0);
-LogicGateSwitch SW4("IN4", Point(20, 160), "SW4", 2, 150);
+LogicGateSwitch SW4("IN4", Point(20, 160), "SW4", 2, 600);
 LogicGateAND GateAND(Point(220, 20), "G1");
 LogicGateOR GateOR(Point(220, 120), "G2");
 LogicGateXOR GateXOR(Point(390, 100), "G3");
 LogicGateNAND GateNAND(Point(530, 60), "G5");
+
+
 #endif // TEST_LEVEL
 
 #if TEST_LEVEL >= TEST_CIRCUIT_AVAILABLE
@@ -163,6 +165,7 @@ void VtlPaint(int xl, int yo, int xr, int yu)
     GateOR.show();
     GateNAND.show();
     GateXOR.show();
+
 #endif
 #if TEST_LEVEL >= TEST_CIRCUIT_AVAILABLE
     MyCircuit.show();

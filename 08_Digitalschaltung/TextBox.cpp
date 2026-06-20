@@ -16,6 +16,6 @@ void TextBox::setText(const std::string& uText){
 
 void TextBox::show() const{
     ColorBox::show();
-    ::Text(Position.X + 10, Position.Y + 0.5*Size.Y - 5, Text.c_str());     //:: hier zwingend, da ansonsten
+    ::Text(Position.X + 10, Position.Y + 6, Text.c_str());     //:: hier zwingend, da ansonsten
 }                                                                       //die gemeinte Methode Text vom
                                                                         //Attribut Text überschattet wird

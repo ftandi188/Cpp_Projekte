@@ -1,4 +1,5 @@
 #include "SwitchPulse.h"
+#include "LogicGate.h"
 
 SwitchPulse::SwitchPulse(const Point& pos,const std::string& Label, int uDecayTime)
             :DecayTime(uDecayTime),PushButton(new TextBox(Point(pos.X-66,pos.Y),Point(63,30),Label)),
@@ -15,6 +16,7 @@ void SwitchPulse::onTimerTick(){
     }
     if(DecayTime == 0){
         setState(false);
+        //LogicGate::setOutput(false);
     }
 }
 
