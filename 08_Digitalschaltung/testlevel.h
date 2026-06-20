@@ -28,7 +28,7 @@
 
 // define current testlevel here by using a constant from above
 
-#define TEST_LEVEL TEST_GATESWITCH
+#define TEST_LEVEL TEST_CIRCUIT_AVAILABLE
 
 #endif
 
