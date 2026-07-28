@@ -35,6 +35,14 @@
 		<Linker>
 			<Add library="gdi32" />
 		</Linker>
+		<Unit filename="Mauer.cpp" />
+		<Unit filename="Mauer.h" />
+		<Unit filename="Mauerstueck.cpp" />
+		<Unit filename="Mauerstueck.h" />
+		<Unit filename="Point.cpp" />
+		<Unit filename="Point.h" />
+		<Unit filename="RGBColor.cpp" />
+		<Unit filename="RGBColor.h" />
 		<Unit filename="WinAdapt.cpp" />
 		<Unit filename="WinAdapt.h" />
 		<Unit filename="main.cpp" />
