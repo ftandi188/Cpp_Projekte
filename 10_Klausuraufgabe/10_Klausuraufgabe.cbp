@@ -39,6 +39,8 @@
 		<Unit filename="Mauer.h" />
 		<Unit filename="Mauerstueck.cpp" />
 		<Unit filename="Mauerstueck.h" />
+		<Unit filename="Paintable.cpp" />
+		<Unit filename="Paintable.h" />
 		<Unit filename="Point.cpp" />
 		<Unit filename="Point.h" />
 		<Unit filename="RGBColor.cpp" />

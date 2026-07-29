@@ -1,15 +1,16 @@
 #ifndef MAUERSTUECK_H_INCLUDED
 #define MAUERSTUECK_H_INCLUDED
 
+#include "Paintable.h"
 #include "Point.h"
+#include "Mauer.h"
 
-class Mauerstueck{
+class Mauerstueck : public Paintable{
 public:
-    Point position;
-    Point size;
+    Mauer* zugeh_Mauer;
 
-    Mauerstueck(Point position, Point size);
-
+    Mauerstueck(Point position, Point size, Mauer* zugeh_Mauer);
+    void paint();
 
 };
 
