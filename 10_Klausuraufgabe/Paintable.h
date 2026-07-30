@@ -2,6 +2,7 @@
 #define PAINTABLE_H_INCLUDED
 
 #include "Point.h"
+#include "WinAdapt.h"
 
 class Paintable{
 public:

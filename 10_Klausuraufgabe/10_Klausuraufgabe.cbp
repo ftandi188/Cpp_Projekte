@@ -35,6 +35,10 @@
 		<Linker>
 			<Add library="gdi32" />
 		</Linker>
+		<Unit filename="GestellKatapult.cpp" />
+		<Unit filename="GestellKatapult.h" />
+		<Unit filename="Katapult.cpp" />
+		<Unit filename="Katapult.h" />
 		<Unit filename="Mauer.cpp" />
 		<Unit filename="Mauer.h" />
 		<Unit filename="Mauerstueck.cpp" />
