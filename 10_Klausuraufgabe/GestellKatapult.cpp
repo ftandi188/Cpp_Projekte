@@ -8,6 +8,7 @@ GestellKatapult::GestellKatapult(Point uposition, int uSkalierung)
 
 
 void GestellKatapult::paint(){
+    FillCol(255,255,255);
     LineCol(100,100,100);
 
     Rect(position.X + 9*Skalierung, position.Y - 2*Skalierung, position.X + 11*Skalierung, position.Y - 10*Skalierung);
