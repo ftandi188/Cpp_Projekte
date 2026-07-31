@@ -10,17 +10,18 @@ Mauerstueck::Mauerstueck(Point uposition, Point usize, Mauer* uzugeh_Mauer)
 
 
 void Mauerstueck::paint(){
-    Point linksoben(1,1);
-    Point rechtsunten(1,1);
+    Point linksunten(1,1);
+    Point rechtsoben(1,1);
 
     if(zugeh_Mauer != nullptr){
-        linksoben = zugeh_Mauer->position + position;
+        linksunten = zugeh_Mauer->position + position;
     }
     else{
-        linksoben = position;
+        linksunten = position;
     }
-    rechtsunten = linksoben + size;
+    rechtsoben.X = linksunten.X + size.X;
+    rechtsoben.Y = linksunten.Y - size.Y;
 
     LineCol(100,100,100);
-    Rect(linksoben.X, linksoben.Y, rechtsunten.X, rechtsunten.Y);
+    Rect(linksunten.X, linksunten.Y, rechtsoben.X, rechtsoben.Y);
 }

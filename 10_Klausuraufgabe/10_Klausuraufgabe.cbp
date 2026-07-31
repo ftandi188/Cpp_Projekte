@@ -51,6 +51,8 @@
 		<Unit filename="Point.h" />
 		<Unit filename="RGBColor.cpp" />
 		<Unit filename="RGBColor.h" />
+		<Unit filename="Spieler.cpp" />
+		<Unit filename="Spieler.h" />
 		<Unit filename="WinAdapt.cpp" />
 		<Unit filename="WinAdapt.h" />
 		<Unit filename="main.cpp" />
