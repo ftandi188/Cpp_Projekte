@@ -23,6 +23,8 @@ Katapult K4(Point(600,300), 6, 1, 1);
 
 void VtlZyk(void)
 {
+//K3.Zustand = 1;
+//K3.Zustand = 0;
 
 }
 
@@ -33,12 +35,22 @@ void VtlMouse(int X, int Y)
 
 void VtlKeyHit(int key)
 {
-
+    if(key == 52){
+        K3.Zustand = 1;
+    }
+    if(key == 53){
+        K3.Zustand = 0;
+    }
+    if(key == 54){
+        K3.Seite = 1;
+    }
+    if(key == 55){
+        K3.Seite = 0;
+    }
 }
 
 void VtlInit(void)
 {
-
 
 }
 

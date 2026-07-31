@@ -1,12 +1,23 @@
 #include "Katapult.h"
+#include "Geschoss.h"
 
 Katapult::Katapult(Point uposition, int uSkalierung, bool uSeite, bool uZustand)
-                :GestellKatapult(uposition, uSkalierung), Seite(uSeite), Zustand(uZustand)
-{}
+                :GestellKatapult(uposition, uSkalierung), Seite(uSeite), Zustand(uZustand),
+                 Schussobjekt(nullptr)
+
+{
+    if(Seite == 0){
+        Schussobjekt = new Geschoss(uposition + Point(-1*Skalierung,-10*Skalierung),Point(3*Skalierung, 3*Skalierung));
+    }
+    if(Seite == 1){
+        Schussobjekt = new Geschoss(uposition + Point(18*Skalierung,-10*Skalierung),Point(3*Skalierung, 3*Skalierung));
+    }
+}
 
 
 void Katapult::paint(){
     GestellKatapult::paint();
+    Schussobjekt->paint();
 
 
     int Stuetzstellen[8];
