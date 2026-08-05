@@ -23,5 +23,6 @@ void Mauerstueck::paint(){
     rechtsoben.Y = linksunten.Y - size.Y;
 
     LineCol(100,100,100);
+    FillCol(-1,-1,-1);
     Rect(linksunten.X, linksunten.Y, rechtsoben.X, rechtsoben.Y);
 }

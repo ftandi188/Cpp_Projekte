@@ -12,8 +12,8 @@
 #include "Katapult.h"
 #include "Spieler.h"
 
-Spieler Spieler1(Point(350, 600), Point(20,10), 12, Point(150, 600), 6, 0, 0);      //positionM, sizeM, AnzahlM, positionK, SkalierungK, SeiteK, ZustandK
-
+Spieler Spieler1(Point(350, 400), Point(20,10), 10, Point(150, 400), 7, 0, 0);      //positionM, sizeM, AnzahlM, positionK, SkalierungK, SeiteK, ZustandK
+Spieler Spieler2(Point(650, 400), Point(20,10), 8, Point(700, 400), 9, 1, 0);
 
 
 void VtlZyk(void)
@@ -29,9 +29,15 @@ void VtlMouse(int X, int Y)
 
 void VtlKeyHit(int key)
 {
-    if(key == 115){
-        Spieler1.abschiessen(10.0);
+    if(key == 115){     //Taste s
+        Spieler1.abschiessen(80.0, 9);
+        Spieler2.abschiessen(130.0, 9);
     }
+    /*
+    if(key == 114){     //Taste r
+        Spieler2.abschiessen(130.0, 9);
+    }
+    */
 }
 
 void VtlInit(void)
@@ -42,5 +48,6 @@ void VtlInit(void)
 void VtlPaint(int xl, int yo, int xr, int yu)
 {
     Spieler1.show();
+    Spieler2.show();
 }
 

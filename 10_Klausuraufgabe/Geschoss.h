@@ -5,7 +5,11 @@
 
 class Geschoss : public Paintable{
 public:
-    Geschoss(Point position, Point size);
+    Point Backup;
+    double v0;
+    int counter;
+
+    Geschoss(Point position, Point size, double v0 = 10.0, int counter = 1);
     void paint();
 };
 

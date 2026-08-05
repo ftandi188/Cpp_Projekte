@@ -11,7 +11,7 @@ public:
 
     Spieler(Point positionM, Point sizeM, int AnzahlM, Point positionK, int SkalierungK, bool SeiteK, bool ZustandK);
     void show();
-    void abschiessen(double v0);
+    void abschiessen(double v0, int Schrittweite);
 
 };
 
