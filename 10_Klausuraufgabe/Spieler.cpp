@@ -1,5 +1,6 @@
 #include "Spieler.h"
 #include "Katapult.h"
+#include "Game.h"
 
 Spieler::Spieler(Point upositionM, Point usizeM, int uAnzahlM, Point upositionK, int uSkalierungK, bool uSeiteK, bool uZustandK)
                 :MeineMauer(new Mauer(upositionM, usizeM, uAnzahlM)),
@@ -45,4 +46,6 @@ void Spieler::abschiessen(double uv0, int Schrittweite){
     MeinKatapult->Schussobjekt->position.Y = MeinKatapult->Schussobjekt->Backup.Y + (5*Schrittweite*Schrittweite*i*i)/(uv0*uv0);
 
     MeinKatapult->Schussobjekt->counter++;
+
+    //Game::checkCollision();
 }
