@@ -104,7 +104,7 @@ void Spieler::checkCollision(Spieler* Gegner){
         if(Getroffen == 0){
             m++;
         }
-        Getroffen = 0;
+        Getroffen = 0;      //Ohne diese Zeile hängt es sich auf!
         zupruefendePunkte.clear();
     }
 }

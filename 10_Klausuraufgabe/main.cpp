@@ -32,15 +32,14 @@ void VtlKeyHit(int key)
     if(key == 115){     //Taste s
         Spieler1.abschiessen(80.0, 9);
         Spieler2.abschiessen(130.0, 9);
-
         Spieler1.checkCollision(&Spieler2);
         Spieler2.checkCollision(&Spieler1);
     }
-    /*
+
     if(key == 114){     //Taste r
-        Spieler2.abschiessen(130.0, 9);
-    }
-    */
+        Spieler2.MeineMauer->Steine.erase(Spieler2.MeineMauer->Steine.begin() + 3);
+    }   //Gegner->MeineMauer->Steine.erase(Gegner->MeineMauer->Steine.begin() + m);
+
 }
 
 void VtlInit(void)
