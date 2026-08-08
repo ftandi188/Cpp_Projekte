@@ -79,15 +79,15 @@ void Spieler::checkCollision(Spieler* Gegner){
 
         for(int i=0; i < AnzahlPunkte; i++){                //Berechnung der Punkte
             float Faktor = float(i)/(AnzahlPunkte-1);
-            TempPunkt.X = TempM->position.X;
-            TempPunkt.Y = TempM->position.Y + Faktor * TempM->size.Y;
+            TempPunkt.X = TempM->zugeh_Mauer->position.X;
+            TempPunkt.Y = TempM->zugeh_Mauer->position.Y + TempM->position.Y + Faktor * TempM->size.Y;
 
             zupruefendePunkte.push_back(TempPunkt);
         }
         for(int i=0; i < AnzahlPunkte; i++){                //Punkte auf der anderen Seite der Mauer
             float Faktor = float(i)/(AnzahlPunkte-1);
-            TempPunkt.X = TempM->position.X + TempM->size.X;
-            TempPunkt.Y = TempM->position.Y + Faktor * TempM->size.Y;
+            TempPunkt.X = TempM->zugeh_Mauer->position.X + TempM->size.X;
+            TempPunkt.Y = TempM->zugeh_Mauer->position.Y + TempM->position.Y + Faktor * TempM->size.Y;
 
             zupruefendePunkte.push_back(TempPunkt);
         }
