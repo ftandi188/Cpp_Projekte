@@ -57,29 +57,37 @@ void Spieler::checkCollision(Spieler* Gegner){
     std::vector<Point> zupruefendePunkte;
     Point TempPunkt(1,1);
     int AnzahlPunkte;
-    int Index = 0;      //Um ausgewählte Mauerstücke zu löschen
+    //int Index = 0;      //Um ausgewählte Mauerstücke zu löschen
+    bool Getroffen = 0;
 
     double Geschossradius = 0.5*(MeinKatapult->Schussobjekt->size.X);
     Point Geschossmitte(1,1);
-    Geschossmitte.X = MeinKatapult->Schussobjekt->position.X + 0.5*(MeinKatapult->Schussobjekt->size.X);
-    Geschossmitte.Y = MeinKatapult->Schussobjekt->position.Y - 0.5*(MeinKatapult->Schussobjekt->size.X);
 
-    for(Mauerstueck* m : Gegner->MeineMauer->Steine){       //Durchlaufen der Mauerstücke
-        AnzahlPunkte = (m->size.Y)/3;
+
+    for(int m=0; m < Gegner->MeineMauer->Steine.size(); ){       //Durchlaufen der Mauerstücke
+        Mauerstueck* TempM = Gegner->MeineMauer->Steine[m];
+
+        Geschossmitte.X = MeinKatapult->Schussobjekt->position.X + 0.5*(MeinKatapult->Schussobjekt->size.X);
+        Geschossmitte.Y = MeinKatapult->Schussobjekt->position.Y - 0.5*(MeinKatapult->Schussobjekt->size.X);
+
+
+        AnzahlPunkte = (TempM->size.Y)/3;
         if(AnzahlPunkte < 2){
             AnzahlPunkte = 2;
         }
         //Ermittlung, wie viele Stellen geprüft werden müssen abhängig von der vertikalen Ausdehnung eines Mauerstücks (mindestens die Ecken, also 2)
 
         for(int i=0; i < AnzahlPunkte; i++){                //Berechnung der Punkte
-            TempPunkt.X = m->position.X;
-            TempPunkt.Y = m->position.Y + (i/(AnzahlPunkte-1)) * m->size.Y;
+            float Faktor = float(i)/(AnzahlPunkte-1);
+            TempPunkt.X = TempM->position.X;
+            TempPunkt.Y = TempM->position.Y + Faktor * TempM->size.Y;
 
             zupruefendePunkte.push_back(TempPunkt);
         }
         for(int i=0; i < AnzahlPunkte; i++){                //Punkte auf der anderen Seite der Mauer
-            TempPunkt.X = m->position.X + m->size.X;
-            TempPunkt.Y = m->position.Y + (i/(AnzahlPunkte-1)) * m->size.Y;
+            float Faktor = float(i)/(AnzahlPunkte-1);
+            TempPunkt.X = TempM->position.X + TempM->size.X;
+            TempPunkt.Y = TempM->position.Y + Faktor * TempM->size.Y;
 
             zupruefendePunkte.push_back(TempPunkt);
         }
@@ -88,10 +96,15 @@ void Spieler::checkCollision(Spieler* Gegner){
 
         for(auto p : zupruefendePunkte){
             if((p - Geschossmitte).abs() < Geschossradius){
-                Gegner->MeineMauer->Steine.erase(Gegner->MeineMauer->Steine.begin() + Index);
+                Gegner->MeineMauer->Steine.erase(Gegner->MeineMauer->Steine.begin() + m);
+                Getroffen = 1;
                 break;              //Wurde eine Überschneidung festgestellt, wird das entsprechende Mauerstück entfernt
             }                       //und die Schleife beendet (also zum nächsten Mauerstück übergegangen)
         }
-        Index++;
+        if(Getroffen == 0){
+            m++;
+        }
+        Getroffen = 0;
+        zupruefendePunkte.clear();
     }
 }
