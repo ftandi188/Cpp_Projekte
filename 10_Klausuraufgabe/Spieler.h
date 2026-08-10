@@ -17,6 +17,14 @@ public:
     void abschiessen(double v0, int Schrittweite, Spieler* Gegner);
     void checkCollision(Spieler* Gegenspieler);
 
+    void KatapultNachOben();
+    void KatapultNachUnten();
+    void KatapultNachLinks();
+    void KatapultNachRechts();
+
+    void SkaliereHoch();
+    void SkaliereRunter();
+
 };
 
 #endif // SPIELER_H_INCLUDED

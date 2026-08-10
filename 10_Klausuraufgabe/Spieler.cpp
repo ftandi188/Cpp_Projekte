@@ -132,3 +132,75 @@ void Spieler::checkCollision(Spieler* Gegner){
         zupruefendePunkte.clear();
     }
 }
+
+
+void Spieler::KatapultNachOben(){
+    MeinKatapult->position.Y--;
+    MeinKatapult->Schussobjekt->BackupUnten.Y--;
+
+    if(MeinKatapult->Zustand == 0){
+        MeinKatapult->Schussobjekt->position.Y--;
+    }
+}
+
+void Spieler::KatapultNachUnten(){
+    MeinKatapult->position.Y++;
+    MeinKatapult->Schussobjekt->BackupUnten.Y++;
+
+    if(MeinKatapult->Zustand == 0){
+        MeinKatapult->Schussobjekt->position.Y++;
+    }
+}
+
+void Spieler::KatapultNachLinks(){
+    MeinKatapult->position.X--;
+    MeinKatapult->Schussobjekt->BackupUnten.X--;
+
+    if(MeinKatapult->Zustand == 0){
+        MeinKatapult->Schussobjekt->position.X--;
+    }
+}
+
+void Spieler::KatapultNachRechts(){
+    MeinKatapult->position.X++;
+    MeinKatapult->Schussobjekt->BackupUnten.X++;
+
+    if(MeinKatapult->Zustand == 0){
+        MeinKatapult->Schussobjekt->position.X++;
+    }
+}
+
+
+void Spieler::SkaliereHoch(){
+    MeinKatapult->Skalierung++;
+    MeinKatapult->Schussobjekt->BackupUnten.Y -= 10;
+    MeinKatapult->Schussobjekt->size += Point(3,3);
+
+    if(MeinKatapult->Seite == 0){
+        MeinKatapult->Schussobjekt->BackupUnten.X -= 1;
+    }
+    if(MeinKatapult->Seite == 1){
+        MeinKatapult->Schussobjekt->BackupUnten.X += 18;
+    }
+
+    if(MeinKatapult->Zustand == 0){
+        MeinKatapult->Schussobjekt->position = MeinKatapult->Schussobjekt->BackupUnten;
+    }
+}
+
+void Spieler::SkaliereRunter(){
+    MeinKatapult->Skalierung--;
+    MeinKatapult->Schussobjekt->BackupUnten.Y += 10;
+    MeinKatapult->Schussobjekt->size -= Point(3,3);
+
+    if(MeinKatapult->Seite == 0){
+        MeinKatapult->Schussobjekt->BackupUnten.X += 1;
+    }
+    if(MeinKatapult->Seite == 1){
+        MeinKatapult->Schussobjekt->BackupUnten.X -= 18;
+    }
+
+    if(MeinKatapult->Zustand == 0){
+        MeinKatapult->Schussobjekt->position = MeinKatapult->Schussobjekt->BackupUnten;
+    }
+}

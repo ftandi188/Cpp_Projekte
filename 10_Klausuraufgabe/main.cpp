@@ -28,21 +28,53 @@ void VtlMouse(int X, int Y)
 
 void VtlKeyHit(int key)
 {
-    if(key == 97){     //Taste a
+    if(key == 'a'){
         Spieler1.abschiessen(80.0, 9, &Spieler2);
         Spieler1.checkCollision(&Spieler2);
     }
 
-    if(key == 100){     //Taste d
+    if(key == 'd'){
         Spieler2.abschiessen(20.0, 9, &Spieler1);
         Spieler2.checkCollision(&Spieler1);
     }
 
-    /*
-    if(key == 114){     //Taste r
-        Spieler2.MeineMauer->Steine.erase(Spieler2.MeineMauer->Steine.begin() + 3);
+    if(key == 'e'){
+        Spieler1.KatapultNachLinks();
     }
-    */
+    if(key == 'r'){
+        Spieler1.KatapultNachRechts();
+    }
+    if(key == 't'){
+        Spieler1.KatapultNachOben();
+    }
+    if(key == 'z'){
+        Spieler1.KatapultNachUnten();
+    }
+    if(key == 'u'){
+        Spieler2.KatapultNachLinks();
+    }
+    if(key == 'i'){
+        Spieler2.KatapultNachRechts();
+    }
+    if(key == 'o'){
+        Spieler2.KatapultNachOben();
+    }
+    if(key == 'p'){
+        Spieler2.KatapultNachUnten();
+    }
+
+    if(key == '6'){
+        Spieler1.SkaliereHoch();
+    }
+    if(key == '7'){
+        Spieler1.SkaliereRunter();
+    }
+    if(key == '8'){
+        Spieler2.SkaliereHoch();
+    }
+    if(key == '9'){
+        Spieler2.SkaliereRunter();
+    }
 }
 
 
