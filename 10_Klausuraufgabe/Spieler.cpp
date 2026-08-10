@@ -5,10 +5,28 @@
 #include "Mauerstueck.h"
 #include "Point.h"
 
+Spieler::Spieler()
+{
+
+}
+
+
 Spieler::Spieler(Point upositionM, Point usizeM, int uAnzahlM, Point upositionK, int uSkalierungK, bool uSeiteK, bool uZustandK)
                 :MeineMauer(new Mauer(upositionM, usizeM, uAnzahlM)),
                  MeinKatapult(new Katapult(upositionK, uSkalierungK, uSeiteK, uZustandK))
 {}
+
+
+Spieler& Spieler::operator=(Spieler& other){
+    if(this != &other){
+        delete MeineMauer;
+        delete MeinKatapult;
+
+        MeineMauer = new Mauer(other.MeineMauer->position, other.MeineMauer->Steine[0]->size, other.MeineMauer->Steine.size());
+        MeinKatapult = new Katapult(other.MeinKatapult->position, other.MeinKatapult->Skalierung, other.MeinKatapult->Seite, other.MeinKatapult->Zustand);
+    }
+    return *this;
+}
 
 
 void Spieler::show(){
@@ -17,7 +35,7 @@ void Spieler::show(){
 }
 
 
-void Spieler::abschiessen(double uv0, int Schrittweite){
+void Spieler::abschiessen(double uv0, int Schrittweite, Spieler* Gegner){
     MeinKatapult->Schussobjekt->v0 = uv0;
 
     //Erster Teil: Katapult ausklappen
@@ -27,11 +45,11 @@ void Spieler::abschiessen(double uv0, int Schrittweite){
 
         if(MeinKatapult->Seite == 0){
             MeinKatapult->Schussobjekt->position += Point(11*(MeinKatapult->Skalierung), -10*(MeinKatapult->Skalierung));
-            MeinKatapult->Schussobjekt->Backup = MeinKatapult->Schussobjekt->position;
+            MeinKatapult->Schussobjekt->BackupOben = MeinKatapult->Schussobjekt->position;
         }
         if(MeinKatapult->Seite == 1){
             MeinKatapult->Schussobjekt->position += Point(-11*(MeinKatapult->Skalierung), -10*(MeinKatapult->Skalierung));
-            MeinKatapult->Schussobjekt->Backup = MeinKatapult->Schussobjekt->position;
+            MeinKatapult->Schussobjekt->BackupOben = MeinKatapult->Schussobjekt->position;
         }
         return;
     }
@@ -46,9 +64,15 @@ void Spieler::abschiessen(double uv0, int Schrittweite){
         MeinKatapult->Schussobjekt->position.X -= Schrittweite;
     }
 
-    MeinKatapult->Schussobjekt->position.Y = MeinKatapult->Schussobjekt->Backup.Y + (5*Schrittweite*Schrittweite*i*i)/(uv0*uv0);
+    MeinKatapult->Schussobjekt->position.Y = MeinKatapult->Schussobjekt->BackupOben.Y + (5*Schrittweite*Schrittweite*i*i)/(uv0*uv0);
 
     MeinKatapult->Schussobjekt->counter++;
+
+    if(MeinKatapult->Schussobjekt->position.Y >= Gegner->MeineMauer->position.Y + 15){
+        MeinKatapult->Schussobjekt->position = MeinKatapult->Schussobjekt->BackupUnten;
+        MeinKatapult->Schussobjekt->counter = 0;
+        MeinKatapult->Zustand = 0;
+    }
 
     //Game::checkCollision();
 }

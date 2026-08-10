@@ -9,9 +9,12 @@ public:
     Mauer* MeineMauer;
     Katapult* MeinKatapult;
 
+    Spieler();
     Spieler(Point positionM, Point sizeM, int AnzahlM, Point positionK, int SkalierungK, bool SeiteK, bool ZustandK);
+    Spieler& operator=(Spieler& other);
+
     void show();
-    void abschiessen(double v0, int Schrittweite);
+    void abschiessen(double v0, int Schrittweite, Spieler* Gegner);
     void checkCollision(Spieler* Gegenspieler);
 
 };

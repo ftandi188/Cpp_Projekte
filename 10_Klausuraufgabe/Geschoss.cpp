@@ -2,7 +2,7 @@
 #include "WinAdapt.h"
 
 Geschoss::Geschoss(Point uposition, Point usize, double uv0, int ucounter)
-                :Paintable(uposition, usize), Backup(uposition), v0(uv0), counter(ucounter)
+                :Paintable(uposition, usize), BackupOben(uposition), BackupUnten(uposition), v0(uv0), counter(ucounter)
 {}
 
 

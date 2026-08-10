@@ -5,7 +5,8 @@
 
 class Geschoss : public Paintable{
 public:
-    Point Backup;
+    Point BackupOben;
+    Point BackupUnten;
     double v0;
     int counter;
 
