@@ -6,9 +6,7 @@
 #include "Point.h"
 
 Spieler::Spieler()
-{
-
-}
+{}
 
 
 Spieler::Spieler(Point upositionM, Point usizeM, int uAnzahlM, Point upositionK, int uSkalierungK, bool uSeiteK, bool uZustandK)
@@ -203,4 +201,56 @@ void Spieler::SkaliereRunter(){
     if(MeinKatapult->Zustand == 0){
         MeinKatapult->Schussobjekt->position = MeinKatapult->Schussobjekt->BackupUnten;
     }
+}
+
+
+
+void Spieler::MauerNachOben(){
+    MeineMauer->position.Y--;
+}
+
+void Spieler::MauerNachUnten(){
+    MeineMauer->position.Y++;
+}
+
+void Spieler::MauerNachLinks(){
+    MeineMauer->position.X--;
+}
+
+void Spieler::MauerNachRechts(){
+    MeineMauer->position.X++;
+}
+
+void Spieler::MauerBreiter(){
+    for(auto m : MeineMauer->Steine){
+        m->size.X++;
+    }
+}
+
+void Spieler::MauerSchmaeler(){
+    for(auto m : MeineMauer->Steine){
+        m->size.X--;
+    }
+}
+
+void Spieler::MauerHoeher(){
+    for(int i=0; i<MeineMauer->Steine.size(); i++){
+        MeineMauer->Steine[i]->size.Y++;
+        MeineMauer->Steine[i]->position.Y -= i;
+    }
+}
+
+void Spieler::MauerNiedriger(){
+    for(int i=0; i<MeineMauer->Steine.size(); i++){
+        MeineMauer->Steine[i]->size.Y--;
+        MeineMauer->Steine[i]->position.Y += i;
+    }
+}
+
+void Spieler::SteinHinzu(){
+
+}
+
+void Spieler::SteinWeg(){
+
 }

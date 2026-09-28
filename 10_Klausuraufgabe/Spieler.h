@@ -21,9 +21,19 @@ public:
     void KatapultNachUnten();
     void KatapultNachLinks();
     void KatapultNachRechts();
-
     void SkaliereHoch();
     void SkaliereRunter();
+
+    void MauerNachOben();
+    void MauerNachUnten();
+    void MauerNachLinks();
+    void MauerNachRechts();
+    void MauerBreiter();
+    void MauerSchmaeler();
+    void MauerHoeher();
+    void MauerNiedriger();
+    void SteinHinzu();
+    void SteinWeg();
 
 };
 

@@ -75,6 +75,31 @@ void VtlKeyHit(int key)
     if(key == '9'){
         Spieler2.SkaliereRunter();
     }
+
+    if(key == '1'){
+        Spieler1.MauerNachLinks();
+    }
+    if(key == '2'){
+        Spieler1.MauerNachRechts();
+    }
+    if(key == '3'){
+        Spieler1.MauerNachOben();
+    }
+    if(key == '4'){
+        Spieler1.MauerNachUnten();
+    }
+    if(key == 'y'){
+        Spieler1.MauerBreiter();
+    }
+    if(key == 'x'){
+        Spieler1.MauerSchmaeler();
+    }
+    if(key == 'c'){
+        Spieler1.MauerHoeher();
+    }
+    if(key == 'v'){
+        Spieler1.MauerNiedriger();
+    }
 }
 
 
