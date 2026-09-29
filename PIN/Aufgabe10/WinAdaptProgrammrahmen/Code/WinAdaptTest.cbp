@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="WinAdapt Test Program" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="DebugWindows">
+				<Option output="bin/Debug/WinAdaptTest" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+				<Linker>
+					<Add library="gdi32" />
+					<Add library="user32" />
+					<Add library="kernel32" />
+					<Add library="comctl32" />
+				</Linker>
+			</Target>
+			<Target title="DebugLinux">
+				<Option output="bin/Debug/WinAdaptTest" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="`pkg-config gtk+-2.0 --cflags`" />
+					<Add option="-Wno-deprecated-declarations" />
+				</Compiler>
+				<Linker>
+					<Add option="`pkg-config gtk+-2.0 --libs`" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-std=c++11" />
+			<Add option="-pthread" />
+		</Compiler>
+                <Linker>
+                        <Add option="-pthread" />
+                </Linker>
+
+		<Unit filename="WinAdapt.cpp" />
+		<Unit filename="WinAdapt.h" />
+		<Unit filename="main.cpp" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<lib_finder disable_auto="1" />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
